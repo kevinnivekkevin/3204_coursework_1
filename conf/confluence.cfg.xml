@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<confluence-configuration>
+  <setupStep>complete</setupStep>
+  <setupType>custom</setupType>
+  <buildNumber>8703</buildNumber>
+  <properties>
+    <property name="access.mode">READ_WRITE</property>
+    <property name="admin.ui.allow.daily.backup.custom.location">false</property>
+    <property name="admin.ui.allow.manual.backup.download">false</property>
+    <property name="admin.ui.allow.site.support.email">false</property>
+    <property name="atlassian.license.message">AAABtQ0ODAoPeNp9kV9v0zAUxd/9Ka7EWyWnTmESqxSJNQlbxdJUTbLBgAfXuV0NqR3ZTqHfHjdpYVSCB7/4/jm/e86rR6wh4wdgE2Bsyq6nLITbrIQJC9+SRbdbo8k3lUVjo5CRWCvHhVvwHUZ1y42RdvuOu4ZbK7kKhN4RodUm8D1yj5EzHZJlZ8SWW0y4w+i4lrIrykJyLwUqi+WhxX5fnGdZuornN/fnUvqzlebQzy1f353F04zL5l/qBZo9mnkSzW6vS/qxenhDPzw93dEZCx8HtBeyLyX7mpfiMSqHZkAvurUVRrZOajX8jEajRV7S9/mKLld5UsXlPF/Qqkh9IYoNetYa1gdwW4STEqRK6BoNtEZ/Q+Hg89a59st0PH7WwV/042aYoDhMfA0g0aC0g1paZ+S6c+g3SwtOg+is0zufS0C8IZ5ZcSUuLfNU8Sq9KdOEzj4dEf8XWuG4+X36Cd47WanvSv9QpEgXkX/0ijGSm2eupOW9MQnusdGtv7BE685nk94NX7/M/TKFy/BPJjz4047bJyTBPyH0CqcO2GgDvG2hPgNYku550w1YG954il/X0fxXMC0CFQCRUd9kwqDYeFIFJyQmlQPeMMYDLQIUYpH3kyyXea6e1PzAN2rpSuuUl4M=X02l1</property>
+    <property name="attachments.dir">${confluenceHome}/attachments</property>
+    <property name="confluence.database.choice">postgresql</property>
+    <property name="confluence.database.connection.type">database-type-standard</property>
+    <property name="confluence.setup.server.id">BIJD-SHYJ-WRCJ-59JO</property>
+    <property name="confluence.webapp.context.path"></property>
+    <property name="finalizedBuildNumber">8703</property>
+    <property name="hibernate.c3p0.validate">true</property>
+    <property name="hibernate.connection.autocommit">false</property>
+    <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+    <property name="hibernate.connection.isolation">2</property>
+    <property name="hibernate.connection.password">password</property>
+    <property name="hibernate.connection.provider_class">com.atlassian.confluence.impl.hibernate.DelegatingHikariConnectionProvider</property>
+    <property name="hibernate.connection.url">jdbc:postgresql://10.0.0.2:5432/confluencedb</property>
+    <property name="hibernate.connection.username">confluence</property>
+    <property name="hibernate.database.lower_non_ascii_supported">true</property>
+    <property name="hibernate.dialect">com.atlassian.confluence.impl.hibernate.dialect.PostgreSQLDialect</property>
+    <property name="hibernate.hikari.idleTimeout">30000</property>
+    <property name="hibernate.hikari.maximumPoolSize">60</property>
+    <property name="hibernate.hikari.minimumIdle">20</property>
+    <property name="hibernate.hikari.registerMbeans">true</property>
+    <property name="hibernate.setup">true</property>
+    <property name="jwt.private.key">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</property>
+    <property name="jwt.public.key">MIIBojANBgkqhkiG9w0BAQEFAAOCAY8AMIIBigKCAYEAggVRRg5+ZY4f0xQjeoRkGGcvW1Yojeppt2mnk3FV3kVuIPO3lAZGVoriPckP55oiYDFXVin/I89TX91kasr8oLaqym/ubI1oyzAup3ORFLwXemLQ8ASELBvqWVyZBAL/cY+M7iFUAORI6FgN3ox3JnufRT+yBK98/6RCky6b6OJE3HNMx5h5HPa20MQ6qbJHT7VTQkrqce0OQ2VTIjczsycZqNZkwfRgPCkS+cZdG11wVUU6UqRcAaS0QSxyoQOJ0BzSi8E1RP+MLacjC1p7fs6DP5F2soTnyOEpWWvActdeV6ogQxClSV9tzXuGwXJe1MMqn8NGC8cGL9d7qTbnlVcSk081cYnzoTYN2G3E1v0Mu1NRLbqfqQ6rvWbku4gsRwjOlbtrs6BCvsz2hSXmF0k5ilAXC4sa36LDSC/ZGkSlSANOvi0FpsJhA9flvR+hb3AEXx5tZuRVD/AxnmtStfolH90Zv2ZOpWG7tNkeEWzr+5y2qM/bSkB1ALXEIBN9AgMBAAE=</property>
+    <property name="lucene.index.dir">${localHome}/index</property>
+    <property name="spring.datasource.hikari.registerMbeans">true</property>
+    <property name="synchrony.encryption.disabled">true</property>
+    <property name="synchrony.proxy.enabled">true</property>
+    <property name="webwork.multipart.saveDir">${localHome}/temp</property>
+  </properties>
+</confluence-configuration>
