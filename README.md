@@ -25,9 +25,7 @@ vagrant up
 ![image](https://user-images.githubusercontent.com/63487456/194748057-f5050b75-1ea5-439a-9d5d-b42525bc67b2.png)
 
 ## Initial Access
-### Confluence 7.12.4
-
-### CVE-2022-26134 - Confluence Server RCE
+### CVE-2022-26134 - Confluence 7.12.4 RCE
 https://github.com/Debajyoti0-0/CVE-2022-26134
 
 #### E.g output of exploit
