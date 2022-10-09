@@ -20,7 +20,9 @@ vagrant up
 ### View logs
 1. Browse to `http://[Vmware_IP]:8090` (confluence) or http://<IP>:8000 (apache) to generate some logs first.
 2. Browse to `http://[Vmware_IP]:5601` and login with `elastic:changeme`
-3. Browse to `http://[Vmware_IP]:5601/app/discover` to view the logs.
+3. Browse to `http://[Vmware_IP]:5601/app/discover` to view the logs. (Create data view, enter `logs-generic-default`)
+#### e.g output
+![image](https://user-images.githubusercontent.com/63487456/194748057-f5050b75-1ea5-439a-9d5d-b42525bc67b2.png)
 
 ## Initial Access
 ### Confluence 7.12.4
