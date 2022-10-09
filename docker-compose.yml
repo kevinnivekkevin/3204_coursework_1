@@ -1,0 +1,124 @@
+version: '3.7'
+
+services:
+  setup:
+    build:
+      context: setup/
+      args:
+        ELASTIC_VERSION: ${ELASTIC_VERSION}
+    init: true
+    volumes:
+      - setup:/state:Z
+    environment:
+      ELASTIC_PASSWORD: ${ELASTIC_PASSWORD:-}
+      LOGSTASH_INTERNAL_PASSWORD: ${LOGSTASH_INTERNAL_PASSWORD:-}
+      KIBANA_SYSTEM_PASSWORD: ${KIBANA_SYSTEM_PASSWORD:-}
+    networks:
+        elk:
+            ipv4_address: 172.18.0.2
+    depends_on:
+      - elasticsearch
+
+  elasticsearch:
+    build:
+      context: elasticsearch/
+      args:
+        ELASTIC_VERSION: ${ELASTIC_VERSION}
+    volumes:
+      - ./elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml:ro,z
+      - elasticsearch:/usr/share/elasticsearch/data:z
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    environment:
+      ES_JAVA_OPTS: -Xms512m -Xmx512m
+      # Bootstrap password.
+      # Used to initialize the keystore during the initial startup of
+      # Elasticsearch. Ignored on subsequent runs.
+      ELASTIC_PASSWORD: ${ELASTIC_PASSWORD:-}
+
+      discovery.type: single-node
+    networks:
+        elk:
+            ipv4_address: 172.18.0.3
+
+  logstash:
+    build:
+      context: logstash/
+      args:
+        ELASTIC_VERSION: ${ELASTIC_VERSION}
+    volumes:
+      - ./logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml:ro,Z
+      - ./logstash/pipeline:/usr/share/logstash/pipeline:ro,Z
+    ports:
+      - "5044:5044"
+      - "50000:50000/tcp"
+      - "50000:50000/udp"
+      - "9600:9600"
+    environment:
+      LS_JAVA_OPTS: -Xms256m -Xmx256m
+      LOGSTASH_INTERNAL_PASSWORD: ${LOGSTASH_INTERNAL_PASSWORD:-}
+    networks:
+        elk:
+            ipv4_address: 172.18.0.4
+    depends_on:
+      - elasticsearch
+    user: root
+    #command: >
+    #    bash -c "apt-get update -y
+    #    && apt-get install iputils-ping -y
+    #    && apt-get install net-tools -y
+    #    && apt-get install nano -y        
+    #    && apt-get install curl -y
+    #    && tail -f /dev/null"
+        
+  kibana:
+    build:
+      context: kibana/
+      args:
+        ELASTIC_VERSION: ${ELASTIC_VERSION}
+    volumes:
+      - ./kibana/config/kibana.yml:/usr/share/kibana/config/kibana.yml:ro,Z
+    ports:
+      - "5601:5601"
+    environment:
+      KIBANA_SYSTEM_PASSWORD: ${KIBANA_SYSTEM_PASSWORD:-}
+    networks:
+        elk:
+            ipv4_address: 172.18.0.5
+    depends_on:
+      - elasticsearch
+      
+  web:
+    image: ubuntu/apache2
+    ports:
+      - "8000:80"
+    networks:
+        elk:
+            ipv4_address: 172.18.0.6
+    command: >
+        bash -c "apt-get update -y
+        && apt-get install iputils-ping -y
+        && apt-get install net-tools -y
+        && apt-get install nano -y        
+        && apt-get install curl -y
+        && apt-get install ca-certificates -y
+        && curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.17.2-amd64.deb
+        && dpkg -i filebeat-7.17.2-amd64.deb
+        && curl -L https://gist.githubusercontent.com/kevinnivekkevin/3df99ca23419835833c2abea67190f01/raw/595656f0a367821423fd2b27c4d8c52d3257789b/filebeat.yml -o /etc/filebeat/filebeat.yml
+        && service filebeat start
+        && service filebeat status
+        && service apache2 start
+        && tail -f /dev/null"
+      
+networks:
+  elk:
+    driver: bridge
+    ipam:
+        driver: default
+        config:
+            - subnet: "172.18.0.5/16"
+
+volumes:
+  setup:
+  elasticsearch:

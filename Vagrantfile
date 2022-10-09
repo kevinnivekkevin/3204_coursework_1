@@ -25,6 +25,7 @@ Vagrant.configure("2") do |config|
                     -e 'ATL_JDBC_URL=jdbc:postgresql://10.0.0.2:5432/confluencedb' \
                     -e 'ATL_JDBC_USER=confluence' \
                     -e 'ATL_JDBC_PASSWORD=password'"
+	#confluence.post_install_provision "shell", path:  "conf/installFilebeatConfluence.sh"
   end
 
   config.vm.network "forwarded_port",
@@ -44,6 +45,10 @@ Vagrant.configure("2") do |config|
                       destination: "$HOME/confluence.cfg.xml"
   config.vm.provision "shell",
                       path: "conf/restoreConfluence.sh"
+					  
+  ##### Confluence Install Filebeat
+  config.vm.provision "shell",
+                      path: "conf/installFilebeatConfluence.sh"
 
   ##### Network Conf
   config.vm.provision "shell",
@@ -51,4 +56,10 @@ Vagrant.configure("2") do |config|
 
   config.vm.provision "shell",
                       path: "conf/attachDockerNetwork.sh"
+					  
+  ##### ELK stack
+  config.vm.provision "shell",
+                      path: "setupELK.sh"
+  config.vm.provision :docker
+  config.vm.provision :docker_compose
 end
