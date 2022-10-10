@@ -18,7 +18,7 @@ vagrant plugin install vagrant-docker-compose
 vagrant up
 ```
 ### View logs
-1. Browse to `http://[Vmware_IP]:8090` (confluence) or http://<IP>:8000 (apache) to generate some logs first.
+1. Browse to `http://[Vmware_IP]:8090` (confluence) or `http://[Vmware_IP]:8000` (apache) to generate some logs first.
 2. Browse to `http://[Vmware_IP]:5601` and login with `elastic:changeme`
 3. Browse to `http://[Vmware_IP]:5601/app/discover` to view the logs. (Create data view, enter `logs-generic-default`)
 #### e.g output
