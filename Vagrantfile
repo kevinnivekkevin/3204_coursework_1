@@ -28,9 +28,15 @@ Vagrant.configure("2") do |config|
 	#confluence.post_install_provision "shell", path:  "conf/installFilebeatConfluence.sh"
   end
 
+  ##### Confluence interface
   config.vm.network "forwarded_port",
                     guest: 8090,
                     host: 80
+
+  ##### ELK interface
+  config.vm.network "forwarded_port",
+                    guest: 5601,
+                    host: 5601
 
   ##### Postgres Restore
   config.vm.provision "file",
