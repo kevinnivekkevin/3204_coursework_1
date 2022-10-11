@@ -1,0 +1,13 @@
+packetbeat.inputs:
+- type: log
+  enabled: true
+  paths:
+    - /opt/atlassian/confluence/logs/confluence_access.*.log
+
+setup.kibana:
+  host: "10.0.0.6:5601"
+  username: "elastic"
+  password: "changeme"
+
+output.logstash:
+  hosts: ["10.0.0.5:5044"]
