@@ -1,15 +1,14 @@
 # 3204_coursework_1
 
 ## Architecture (current, TBC)
-![image](https://user-images.githubusercontent.com/63487456/194746738-c0f65eb9-98e6-4bfd-8140-73d109fbb44d.png)
+View/edit the lucidchart diagram [here](https://lucid.app/lucidchart/6e6578d6-0ba2-476d-b156-56c140aab2bd/edit?viewport_loc=-393%2C-96%2C2219%2C979%2C0_0&invitationId=inv_5979f7e6-9a73-4b7e-b835-07418f9dae9d#)
 
 ### Setup
 1. Install vagrant https://www.vagrantup.com/downloads
 2. Install vagrant-vmware-utility https://www.vagrantup.com/vmware/downloads
-3. Install vagrant plugins
+3. Install vagrant-vmware-desktop plugin
 ```
 vagrant plugin install vagrant-vmware-desktop
-vagrant plugin install vagrant-docker-compose
 ```
 
 ### Run
@@ -18,9 +17,8 @@ vagrant plugin install vagrant-docker-compose
 vagrant up
 ```
 ### View logs
-1. Browse to `http://[Vmware_IP]:8090` (confluence) or `http://[Vmware_IP]:8000` (apache) to generate some logs first.
-2. Browse to `http://[Vmware_IP]:5601` and login with `elastic:changeme`
-3. Browse to `http://[Vmware_IP]:5601/app/discover` to view the logs. (Create data view, enter `logs-generic-default`)
+Browse to `http://localhost:5601/app/dashboard` to view the log dashboards. (e.g [Packetbeat] Overview ECS)
+
 #### e.g output
 ![image](https://user-images.githubusercontent.com/63487456/194748057-f5050b75-1ea5-439a-9d5d-b42525bc67b2.png)
 
