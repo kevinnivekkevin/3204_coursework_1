@@ -167,7 +167,8 @@ Vagrant.configure("2") do |config|
                       -v '/home/vagrant/logstash.yml:/usr/share/logstash/config/logstash.yml:ro' \
                       -v '/home/vagrant/logstash.conf:/usr/share/logstash/pipeline/logstash.conf:ro' \
                       -e 'ES_JAVA_OPTS=-Xmx256m' \
-                      -e 'LOGSTASH_INTERNAL_PASSWOR=changeme'"
+
+                      -e 'LOGSTASH_INTERNAL_PASSWORD=changeme'"
   end
   # Connect container to network
   config.vm.provision "shell",
