@@ -11,4 +11,3 @@ monitoring.ui.container.elasticsearch.enabled: true
 #
 elasticsearch.username: kibana_system
 elasticsearch.password: changeme
-# elasticsearch.password: ${KIBANA_SYSTEM_PASSWORD}
