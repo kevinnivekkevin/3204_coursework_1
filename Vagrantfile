@@ -89,6 +89,20 @@ Vagrant.configure("2") do |config|
 
 
   ##
+  ## Kali Docker container
+  ##
+    # Create container
+    config.vm.provision "docker" do |kali|
+      kali.run "kalilinux/kali-last-release",
+                    name: "kali",
+                    args: "-it"
+    end
+    # Connect container to network
+    config.vm.provision "shell",
+      inline: "docker network connect --ip 10.0.0.7 network_3204 kali"
+
+
+  ##
   ## Postgres / Confluence config restore
   ##
 
@@ -112,11 +126,6 @@ Vagrant.configure("2") do |config|
   config.vm.provision "file",
                       source: "conf/packetbeat.yml",
                       destination: "$HOME/packetbeat.yml"
-  # Run PacketBeat installer on Confluence container
-  config.vm.provision "shell",
-                      path: "conf/installPacketbeatConfluence.sh"
-
-
 
 ##
 ##
@@ -196,5 +205,25 @@ Vagrant.configure("2") do |config|
   # Connect container to network
   config.vm.provision "shell",
     inline: "docker network connect --ip 10.0.0.6 network_3204 kibana"
+
+  ##
+  ## Setup Attacker
+  ##
+
+  # Setup Dnsteal for exfiltration on Kali container
+  config.vm.provision "shell",
+                      path: "conf/setupDnsteal.sh"
+
+  ##
+  ## Setup Confluence
+  ##
+
+  # Setup Packetbeat on Confluence container
+  config.vm.provision "shell",
+                      path: "conf/installPacketbeatConfluence.sh"
+                      
+  # Setup on exfiltration on Confluence container
+  config.vm.provision "shell",
+                      path: "conf/setupExfiltration.sh"
 
 end
