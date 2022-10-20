@@ -12,9 +12,7 @@ Vagrant.configure("2") do |config|
       elk.vm.provider "docker" do |d|
         d.name = "elk"
         d.image = "sebp/elk"
-        d.create_args = ["-it",
-						"-e", "ES_JAVA_OPTS=-Xms2g -Xmx2g"
-						]
+        d.create_args = ["-it"]
         d.ports = ["5601:5601", "9200:9200", "5044:5044", "9600:9600"]
         d.remains_running = true        
       end
