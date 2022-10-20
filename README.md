@@ -5,11 +5,6 @@ View/edit the lucidchart diagram [here](https://lucid.app/lucidchart/6e6578d6-0b
 
 ### Setup
 1. Install vagrant https://www.vagrantup.com/downloads
-2. Install vagrant-vmware-utility https://www.vagrantup.com/vmware/downloads
-3. Install vagrant-vmware-desktop plugin
-```
-vagrant plugin install vagrant-vmware-desktop
-```
 
 ### Run
 ```
@@ -32,5 +27,6 @@ https://github.com/ariary/QueenSono
 
 - Collected files are tar-ed from the Confluence server sent to the attacker server via ICMP
 - All files that are to be exfiltrated can be placed at `/tmp/exfiltrate`
+- Files received by the attacker can be found at `/tmp/data_X.tar.gz`
 - Data is exfiltrated to the attacker at X minute intervals (currently set to 1).
 
