@@ -27,9 +27,10 @@ https://github.com/Debajyoti0-0/CVE-2022-26134
 ![image](https://user-images.githubusercontent.com/63487456/194700550-61e765b9-cc48-4789-88f1-bf01eeb86ac1.png)
 
 ## Exfiltration
-### Exfiltrate data over DNS
-https://github.com/m57/dnsteal
+### Exfiltrate data over ICMP
+https://github.com/ariary/QueenSono
 
-- Collected files are exfiltrated from the Confluence server at `/tmp/exfiltrate` to the attacker at X minute intervals (currently set to 2).
-- Dnsteal must be running on the attacker's server
-- Victim server must be able to run the `dig` command
+- Collected files are tar-ed from the Confluence server sent to the attacker server via ICMP
+- All files that are to be exfiltrated can be placed at `/tmp/exfiltrate`
+- Data is exfiltrated to the attacker at X minute intervals (currently set to 1).
+
