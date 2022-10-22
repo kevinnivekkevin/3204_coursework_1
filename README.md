@@ -92,8 +92,10 @@ docker exec -it kali /bin/bash
 ## Exfiltration
 ### Exfiltrate data over ICMP
 https://github.com/ariary/QueenSono
+### Exfiltrate data over DNS
+https://github.com/m57/dnsteal
 
-- Collected files are tar-ed from the Confluence server sent to the attacker server via ICMP
-- All files that are to be exfiltrated can be placed at `/tmp/exfiltrate`
-- Files received by the attacker can be found at `/tmp/data_X.tar.gz`
+- Collected files are tar-ed from the Confluence server sent to the attacker server via ICMP and DNS
+- All files that are to be exfiltrated can be placed at `/tmp/exfiltrate` on the Confluence server
+- Files received by the attacker can be found at `/tmp/qs/` (ICMP) and `/tmp/dnsteal/` (DNS)
 - Data is exfiltrated to the attacker at X minute intervals (currently set to 1).
