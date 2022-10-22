@@ -2,7 +2,15 @@
 
 # General
 apt update -y
-apt install wget -y
+apt install wget netcat -y
+
+
+
+#[Initial Access]
+mkdir /tmp/1_InitialAccess
+cp /vagrant/attack/initialAccess/through_the_wire.py /tmp/1_InitialAccess/through_the_wire.py
+cp /vagrant/attack/initialAccess/runme.sh /tmp/1_InitialAccess/runme.sh
+
 
 #[EXFILTRATION]
 

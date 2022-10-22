@@ -14,7 +14,7 @@ Vagrant.configure("2") do |config|
         d.image = "sebp/elk"
         d.create_args = ["-it", "-e", "ES_JAVA_OPTS=-Xms2g -Xmx2g"]
         d.ports = ["5601:5601", "9200:9200", "5044:5044", "9600:9600"]
-        d.remains_running = true        
+        d.remains_running = true
       end
     end
 
@@ -32,7 +32,7 @@ Vagrant.configure("2") do |config|
      end
 
     # Postgres container
-    config.vm.define "postgres" do |postgres|    
+    config.vm.define "postgres" do |postgres|
       postgres.vm.hostname = "postgres"
       postgres.vm.network :private_network, ip: "10.0.0.4"
       postgres.vm.network :forwarded_port, guest: 5432, host: 5432  
@@ -40,7 +40,7 @@ Vagrant.configure("2") do |config|
         d.name = "postgres"
         d.image = "postgres:14"
         d.has_ssh = false
-        d.remains_running = true      
+        d.remains_running = true
         d.create_args = ["-e", "POSTGRES_USER=confluence",
                         "-e", "POSTGRES_DB=confluencedb",
                         "-e", "POSTGRES_PASSWORD=password"]
