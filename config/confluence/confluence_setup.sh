@@ -31,17 +31,22 @@ cp /vagrant/config/auditbeat/auditbeat.yml /etc/auditbeat/auditbeat.yml
 
 #[PRIVILEGE ESCALATION]
 
+# Install Packages
 apt update
-apt install git
-apt install gcc
-apt install make
+apt install git -y
+apt install gcc -y
+apt install make -y
 
+# Uninstall Existing sudo
 export SUDO_FORCE_REMOVE=yes
-apt purge sudo
+apt purge sudo -y
 
+# Download sudo 1.8.27
 cd /vagrant/attack/privilegeEscalation
 wget http://www.sudo.ws/dist/sudo-1.8.27.tar.gz
 tar -xf sudo-1.8.27.tar.gz
+
+# Install sudo 1.8.27
 cd sudo-1.8.27
 ./configure --prefix=/usr              \
             --libexecdir=/usr/lib      \
