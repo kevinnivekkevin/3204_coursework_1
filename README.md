@@ -14,7 +14,7 @@
 
 #### MITRE ATT&CK Techniques Chosen
 - Initial Access - `Exploit Public-Facing Application`
-- Privilege Escalation - `lorem ipsum`
+- Privilege Escalation - `Exploit Low Privileged User Shell`
 - Persistence - `lorem ipsum`
 - Credential Access - `lorem ipsum`
 - Collection & Exfiltration - `lorem ipsum`
@@ -107,9 +107,13 @@ Steps:
 <p align="right">(<a href="#ict3204---coursework-assignment-1">back to top</a>)</p>
 
 ### Privilege Escalation
-```
-lorem ipsum
-```
+#### CVE-2021-3156 - Buffer Overflow Root Shell
+https://github.com/CptGibbon/CVE-2021-3156
+
+- Heap-Based Buffer Overflow in Sudo also known as [Baron Samedit](https://blog.qualys.com/vulnerabilities-threat-research/2021/01/26/cve-2021-3156-heap-based-buffer-overflow-in-sudo-baron-samedit)
+- Vulnerability exploitation allows low privileged users to gain root privileges
+- Privilege escalation via "sudoedit -s" and a command-line argument that ends with a single backslash character
+
 <p align="right">(<a href="#ict3204---coursework-assignment-1">back to top</a>)</p>
 
 ### Persistence
