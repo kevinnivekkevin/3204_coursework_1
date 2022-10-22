@@ -20,13 +20,13 @@
 - Collection & Exfiltration - `lorem ipsum`
 - Impact - `lorem ipsum`
 
-## Architecture (current, TBC)
-View/edit the lucidchart diagram [here](https://lucid.app/lucidchart/6e6578d6-0ba2-476d-b156-56c140aab2bd/edit?viewport_loc=-393%2C-96%2C2219%2C979%2C0_0&invitationId=inv_5979f7e6-9a73-4b7e-b835-07418f9dae9d#)
-
-### Dependencies
+#### Dependencies
 1. `Vagrant` - https://www.vagrantup.com/downloads
 2. `Docker Engine` - https://www.docker.com/
 3. `Python 3` - https://www.python.org/
+
+## Architecture (current, TBC)
+View/edit the lucidchart diagram [here](https://lucid.app/lucidchart/6e6578d6-0ba2-476d-b156-56c140aab2bd/edit?viewport_loc=-393%2C-96%2C2219%2C979%2C0_0&invitationId=inv_5979f7e6-9a73-4b7e-b835-07418f9dae9d#)
 
 <p align="right">(<a href="#ict3204---coursework-assignment-1">back to top</a>)</p>
 
@@ -35,6 +35,13 @@ Sections
 1. [Part 1 - Spinning up the Infrastructure](https://github.com/kevinnivekkevin/3204_coursework_1/edit/rewrite2/README.md#part-1---spinning-up-the-infrastructure)
 2. [Part 2 - Logs, Dashboards and Services](https://github.com/kevinnivekkevin/3204_coursework_1/edit/rewrite2/README.md#part-2---logs-dashboards-and-services)
 3. [Part 3 - Attack Vector and Exploits](https://github.com/kevinnivekkevin/3204_coursework_1/edit/rewrite2/README.md#part-3---attack-vector-and-exploits)
+    - [Initial Access](https://github.com/kevinnivekkevin/3204_coursework_1/edit/main/README.md#initial-access)
+    - [Privilege Escalation](https://github.com/kevinnivekkevin/3204_coursework_1/edit/main/README.md#privilege-escalation)
+    - [Persistence](https://github.com/kevinnivekkevin/3204_coursework_1/edit/main/README.md#persistence)
+    - [Credential Access](https://github.com/kevinnivekkevin/3204_coursework_1/edit/main/README.md#credential-access)
+    - [Collection & Exfiltration](https://github.com/kevinnivekkevin/3204_coursework_1/edit/main/README.md#collection--exfiltration)
+    - [Impact](https://github.com/kevinnivekkevin/3204_coursework_1/edit/main/README.md#impact)
+
 ### Part 1 - Spinning up the Infrastructure
 1. Ensure Docker Engine is **running**
 2. From within project folder
@@ -84,18 +91,54 @@ docker exec -it kali /bin/bash
 ### Initial Access
 ##### CVE-2022-26134 - Confluence RCE
 - https://github.com/jbaines-r7/through_the_wire
-- https://github.com/Debajyoti0-0/CVE-2022-26134
-  ![image](https://user-images.githubusercontent.com/63487456/194700550-61e765b9-cc48-4789-88f1-bf01eeb86ac1.png)
+
+    <img src="https://user-images.githubusercontent.com/1593214/197329877-ef4c952d-2de8-49e2-84ab-fde8a30edea3.png" width="512">
+
+Steps:
+  ```
+  host-machine $ docker exec -it kali /bin/bash
+  root@kali # cd /tmo/1_InitialAccess
+  root@kali # bash runme.sh
+  ...
+  ...
+  confluence@confluence:/opt/atlassian/confluence/bin $
+  ```
 
 <p align="right">(<a href="#ict3204---coursework-assignment-1">back to top</a>)</p>
 
-## Exfiltration
-### Exfiltrate data over ICMP
+### Privilege Escalation
+```
+lorem ipsum
+```
+<p align="right">(<a href="#ict3204---coursework-assignment-1">back to top</a>)</p>
+
+### Persistence
+```
+lorem ipsum
+```
+<p align="right">(<a href="#ict3204---coursework-assignment-1">back to top</a>)</p>
+
+### Credential Access
+```
+lorem ipsum
+```
+<p align="right">(<a href="#ict3204---coursework-assignment-1">back to top</a>)</p>
+
+### Collection & Exfiltration
+#### Exfiltrate data over ICMP
 https://github.com/ariary/QueenSono
-### Exfiltrate data over DNS
+#### Exfiltrate data over DNS
 https://github.com/m57/dnsteal
 
 - Collected files are tar-ed from the Confluence server sent to the attacker server via ICMP and DNS
 - All files that are to be exfiltrated can be placed at `/tmp/exfiltrate` on the Confluence server
 - Files received by the attacker can be found at `/tmp/qs/` (ICMP) and `/tmp/dnsteal/` (DNS)
 - Data is exfiltrated to the attacker at X minute intervals (currently set to 1).
+
+<p align="right">(<a href="#ict3204---coursework-assignment-1">back to top</a>)</p>
+
+### Impact
+```
+lorem ipsum
+```
+<p align="right">(<a href="#ict3204---coursework-assignment-1">back to top</a>)</p>
