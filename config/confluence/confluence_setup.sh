@@ -30,6 +30,33 @@ curl -L -O https://artifacts.elastic.co/downloads/beats/auditbeat/auditbeat-8.3.
 dpkg -i auditbeat-8.3.3-amd64.deb
 cp /vagrant/config/auditbeat/auditbeat.yml /etc/auditbeat/auditbeat.yml
 
+#[PRIVILEGE ESCALATION]
+
+# Install Packages
+apt update
+apt install git -y
+apt install gcc -y
+apt install make -y
+
+# Uninstall Existing sudo
+export SUDO_FORCE_REMOVE=yes
+apt purge sudo -y
+
+# Download sudo 1.8.27
+cd /vagrant/attack/privilegeEscalation
+wget http://www.sudo.ws/dist/sudo-1.8.27.tar.gz
+tar -xf sudo-1.8.27.tar.gz
+
+# Install sudo 1.8.27
+cd sudo-1.8.27
+./configure --prefix=/usr              \
+            --libexecdir=/usr/lib      \
+            --with-secure-path         \
+            --with-all-insults         \
+            --with-env-editor          \
+            --docdir=/usr/share/doc/sudo-1.8.27 \
+            --with-passprompt="[sudo] password for %p: " && make
+make install && ln -sfv libsudo_util.so.0.0.0 /usr/lib/sudo/libsudo_util.so.0
 
 #[EXFILTRATION]
 
