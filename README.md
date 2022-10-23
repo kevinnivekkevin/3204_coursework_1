@@ -45,7 +45,7 @@ View/edit the lucidchart diagram [here](https://lucid.app/lucidchart/6e6578d6-0b
     - [Quick Commands](#quick-commands)
   - [Part 2 - Logs, Dashboards and Services](#part-2---logs-dashboards-and-services)
     - [Confluence - Attack Target](#confluence---attack-target)
-    - [Kibana (ELK) Dashboard](#kibanaelk-dashboard)
+    - [Kibana (ELK) Dashboard](#kibana-elk-dashboard)
   - [Part 3 - Attack Vector and Exploits](#part-3---attack-vector-and-exploits)
     - [Automation](#automation)
     - [Initial Access](#initial-access)
