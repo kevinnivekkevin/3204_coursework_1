@@ -15,7 +15,7 @@
 ## MITRE ATT&CK Techniques Chosen
 - Initial Access - `Exploit Public-Facing Application`
 - Privilege Escalation - `Exploit Low Privileged User Shell`
-- Persistence - `lorem ipsum`
+- Persistence - `Exploit Suid Binary file`
 - Credential Access - `Unsecured Credentials`
 - Collection & Exfiltration - `lorem ipsum`
 - Impact - `Ransomware`
