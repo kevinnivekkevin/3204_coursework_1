@@ -3,8 +3,11 @@
 # Check if CVE-2021-3156 folder exists
 if [ -d "/tmp/pe" ]
 then
-	# Download CVE-2021-3156 Exploit
+	# Clean Up
+	cd /
 	rm -rf /tmp/pe
+	
+	# Download CVE-2021-3156 Exploit
 	echo "whoami: $(whoami)"
 	mkdir /tmp/pe
 	cd /tmp/pe
