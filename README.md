@@ -17,8 +17,13 @@
 - Privilege Escalation - `Exploit Low Privileged User Shell`
 - Persistence - `lorem ipsum`
 - Credential Access - `lorem ipsum`
+<<<<<<< HEAD
 - Collection & Exfiltration - `lorem ipsum`
 - Impact - `Ransomware`
+=======
+- Exfiltration - `Exfiltration over alternative protocol`
+- Impact - `lorem ipsum`
+>>>>>>> main
 
 ### Dependencies
 1. `Vagrant` - https://www.vagrantup.com/downloads
@@ -34,6 +39,8 @@ kernelCommandLine = "sysctl.vm.max_map_count=262144"
 
 ## Architecture (current, TBC)
 View/edit the lucidchart diagram [here](https://lucid.app/lucidchart/6e6578d6-0ba2-476d-b156-56c140aab2bd/edit?viewport_loc=-393%2C-96%2C2219%2C979%2C0_0&invitationId=inv_5979f7e6-9a73-4b7e-b835-07418f9dae9d#)
+
+<img src="https://user-images.githubusercontent.com/1593214/197373787-f5a11e7f-6db7-4052-b678-d579149e1273.png" width="1024">
 
 <p align="right">(<a href="#ict3204---coursework-assignment-1">back to top</a>)</p>
 
@@ -153,7 +160,7 @@ lorem ipsum
 ```
 <p align="right">(<a href="#ict3204---coursework-assignment-1">back to top</a>)</p>
 
-## Collection & Exfiltration
+## Exfiltration
 ### Exfiltrate data over ICMP
 https://github.com/ariary/QueenSono
 ### Exfiltrate data over DNS
