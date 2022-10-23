@@ -45,7 +45,7 @@ View/edit the lucidchart diagram [here](https://lucid.app/lucidchart/6e6578d6-0b
     - [Quick Commands](#quick-commands)
   - [Part 2 - Logs, Dashboards and Services](#part-2---logs-dashboards-and-services)
     - [Confluence - Attack Target](#confluence---attack-target)
-    - [Kibana(ELK) Dashboard](#kibanaelk-dashboard)
+    - [Kibana (ELK) Dashboard](#kibanaelk-dashboard)
   - [Part 3 - Attack Vector and Exploits](#part-3---attack-vector-and-exploits)
     - [Automation](#automation)
     - [Initial Access](#initial-access)
@@ -110,7 +110,7 @@ HOST-MACHINE@HOST $ vagrant halt
 - Simulated Network - `10.0.0.3`
 - Testing and User Access - [`http://127.0.0.1:80`](http://127.0.0.1:80)
 
-### Kibana(ELK) Dashboard
+### Kibana (ELK) Dashboard
 - Simulated Network - `10.0.0.2`
 - User Access - [`http://127.0.0.1:5601`](http://127.0.0.1:5601)
 - Browse to [`http://127.0.0.1:5601/app/dashboards`](http://127.0.0.1:5601/app/dashboards) to view the log dashboards. (e.g [Packetbeat] Overview ECS)
