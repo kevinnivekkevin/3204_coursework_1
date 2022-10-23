@@ -40,18 +40,34 @@ View/edit the lucidchart diagram [here](https://lucid.app/lucidchart/6e6578d6-0b
 <p align="right">(<a href="#ict3204---coursework-assignment-1">back to top</a>)</p>
 
 # Usage 
-- [Part 1 - Spinning up the Infrastructure](#part-1---spinning-up-the-infrastructure)
-- [Part 2 - Logs, Dashboards and Services](#part-2---logs-dashboards-and-services)
-- [Part 3 - Attack Vector and Exploits](#part-3---attack-vector-and-exploits)
+- [ICT3204 - Coursework Assignment 1](#ict3204---coursework-assignment-1)
+  - [Members](#members)
+  - [MITRE ATT&CK Techniques Chosen](#mitre-attck-techniques-chosen)
+  - [Dependencies](#dependencies)
+  - [Architecture (current, TBC)](#architecture-current-tbc)
+- [Usage](#usage)
+  - [Part 1 - Spinning up the Infrastructure](#part-1---spinning-up-the-infrastructure)
+    - [Quick Commands](#quick-commands)
+  - [Part 2 - Logs, Dashboards and Services](#part-2---logs-dashboards-and-services)
+    - [Confluence - Attack target](#confluence---attack-target)
+    - [Kibana(ELK) Dashboard](#kibanaelk-dashboard)
+  - [Part 3 - Attack Vector and Exploits](#part-3---attack-vector-and-exploits)
+  - [Automation](#automation)
   - [Initial Access](#initial-access)
+    - [CVE-2022-26134 - Confluence RCE](#cve-2022-26134---confluence-rce)
   - [Privilege Escalation](#privilege-escalation)
+    - [CVE-2021-3156 - Buffer Overflow Root Shell](#cve-2021-3156---buffer-overflow-root-shell)
   - [Persistence](#persistence)
-    - [Persistence](#persistence-1)
-      - [Persistence using Suid Binary](#persistence-using-suid-binary)
-      - [Persistence using account](#persistence-using-account)
+    - [Persistence using Suid Binary](#persistence-using-suid-binary)
   - [Credential Access](#credential-access)
-  - [Collection & Exfiltration](#collection--exfiltration)
+    - [DumpsterDiver](#dumpsterdiver)
+    - [LaZagne](#lazagne)
+    - [linPEAS](#linpeas)
+  - [Exfiltration](#exfiltration)
+    - [Exfiltrate data over ICMP](#exfiltrate-data-over-icmp)
+    - [Exfiltrate data over DNS](#exfiltrate-data-over-dns)
   - [Impact](#impact)
+    - [Ransomware Payload](#ransomware-payload)
 
 ## Part 1 - Spinning up the Infrastructure
 1. Ensure Docker Engine is **running**
@@ -126,9 +142,9 @@ HOST-MACHINE@HOST $ vagrant provision --provision-with <configured attack>
     <img src="https://user-images.githubusercontent.com/1593214/197329877-ef4c952d-2de8-49e2-84ab-fde8a30edea3.png" width="512">
 
 Steps:
-  ```console
-  HOST-MACHINE@HOST $ docker exec -it kali /bin/bash
-  root@kali # cd /tmo/1_InitialAccess
+  ```
+  host-machine $ docker exec -it kali /bin/bash
+  root@kali # cd /tmp/1_InitialAccess
   root@kali # bash runme.sh
   ...
   ...
