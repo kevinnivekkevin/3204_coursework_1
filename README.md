@@ -134,6 +134,7 @@ The process of the attacks can be automated by adding the commands to be execute
 ```console
 HOST-MACHINE@HOST $ vagrant provision --provision-with <configured attack> 
 ```
+Available configured attacks: `initialaccess` `privesc` `persistence` `credentialaccess` `exfil` `ransom`
 
 ### Initial Access
 #### CVE-2022-26134 - Confluence RCE
