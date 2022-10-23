@@ -1,3 +1,13 @@
 # ignore .vagrant
 .vagrant/
 .DS_Store
+
+# ignore python, pyinstaller
+venv
+.venv
+__pycache__/
+private.pem
+public.pem
+build/
+dist/
+*.spec/
