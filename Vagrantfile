@@ -36,7 +36,7 @@ Vagrant.configure("2") do |config|
       run: "once",
       path: "config/kali/kali_setup.sh"
 
-    kali.vm.provision "initialAccess", 
+    kali.vm.provision "initialaccess", 
       after: "prep",
       type: "shell", 
       preserve_order: true,
