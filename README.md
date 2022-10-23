@@ -4,7 +4,7 @@
 - To integrate the usage of `Vagrant Scripts` and `Docker Containers`
 - To perform log `collection`, `cleaning` and `visualisation` with the use of the `ELK` stack
 
-### Members
+## Members
 - `2000941` - Ian Peh Shun Wei
 - `2001174` - Kevin Pook Yuan Kai
 - `2001209` - Lim Jin Tao Benjamin
@@ -12,15 +12,15 @@
 - `2001558` - Jeremy Jevon Chow Zi You
 - `2001689` - Cham Zheng Han Donovan
 
-### MITRE ATT&CK Techniques Chosen
+## MITRE ATT&CK Techniques Chosen
 - Initial Access - `Exploit Public-Facing Application`
 - Privilege Escalation - `Exploit Low Privileged User Shell`
 - Persistence - `lorem ipsum`
-- Credential Access - `lorem ipsum`
-- Exfiltration - `Exfiltration over alternative protocol`
-- Impact - `lorem ipsum`
+- Credential Access - `Unsecured Credentials`
+- Collection & Exfiltration - `lorem ipsum`
+- Impact - `Ransomware`
 
-### Dependencies
+## Dependencies
 1. `Vagrant` - https://www.vagrantup.com/downloads
 2. `Docker Engine` - https://www.docker.com/
 3. `Python 3` - https://www.python.org/
@@ -39,7 +39,7 @@ View/edit the lucidchart diagram [here](https://lucid.app/lucidchart/6e6578d6-0b
 
 <p align="right">(<a href="#ict3204---coursework-assignment-1">back to top</a>)</p>
 
-## Usage 
+# Usage 
 - [Part 1 - Spinning up the Infrastructure](#part-1---spinning-up-the-infrastructure)
 - [Part 2 - Logs, Dashboards and Services](#part-2---logs-dashboards-and-services)
 - [Part 3 - Attack Vector and Exploits](#part-3---attack-vector-and-exploits)
@@ -66,6 +66,7 @@ View/edit the lucidchart diagram [here](https://lucid.app/lucidchart/6e6578d6-0b
       ...
       ...
       ```
+      
       ```console
       $ docker container ls
       CONTAINER ID   IMAGE                           COMMAND                    CREATED           STATUS          PORTS                                                                                                      NAMES
@@ -130,8 +131,12 @@ Steps:
   ...
   confluence@confluence:/opt/atlassian/confluence/bin $
   ```
+```console
+$ vagrant provision --provision-with initialaccess 
+```
 
 <p align="right">(<a href="#ict3204---coursework-assignment-1">back to top</a>)</p>
+
 
 ## Privilege Escalation
 ### CVE-2021-3156 - Buffer Overflow Root Shell
@@ -141,10 +146,14 @@ https://github.com/CptGibbon/CVE-2021-3156
 - Vulnerability exploitation allows low privileged users to gain root privileges
 - Privilege escalation via "sudoedit -s" and a command-line argument that ends with a single backslash character
 
+```console
+$ vagrant provision --provision-with privesc 
+```
+
 <p align="right">(<a href="#ict3204---coursework-assignment-1">back to top</a>)</p>
 
-## Persistence
 
+## Persistence
 ### Persistence using Suid Binary
 - After gaining root access via privilege escalation, create suid binary to allow anyone to execute the file.
 - Allows attacker to regain root privileges from low privileged user account.
@@ -164,9 +173,11 @@ https://github.com/CptGibbon/CVE-2021-3156
     whoami
     root
     ```
-#### Persistence using account
+
+### Persistence using account
 - After gaining root access via privilege escalation, create root privileges account.
 - Allows attacker to regain root privileges by accessing the account.
+
     ```
     root@confluence:/tmp# useradd -ou 0 -g 0 systemd
     root@confluence:/tmp# chpasswd <<<"systemd:systemd"
@@ -183,13 +194,31 @@ https://github.com/CptGibbon/CVE-2021-3156
     root
     ```
 
+```console
+$ vagrant provision --provision-with persistence 
+```
+
 <p align="right">(<a href="#ict3204---coursework-assignment-1">back to top</a>)</p>
 
+
 ## Credential Access
+### DumpsterDiver
+[DumpsterDiver](https://github.com/securing/DumpsterDiver) is a tool that is used to detect any hardcoded secrets like keys or passwords.
+
+### LaZagne
+[LaZagne](https://github.com/AlessandroZ/LaZagne) is an application that is used to retrieve passwords stored on a local computer.
+
+### linPEAS
+[linPEAS](https://github.com/carlospolop/PEASS-ng/tree/master/linPEAS) is a script that searches for possible paths to escalate pivileges on Linux. Its functionalities include searching for possible passwords inside all the accessible files of the system and bruteforcing users with top2000 passwords.
+
+```console
+$ vagrant provision --provision-with credentialaccess 
 ```
-lorem ipsum
-```
+
+- Output from the tools used are stored at `/tmp/exfiltrate/credentialAccess`
+
 <p align="right">(<a href="#ict3204---coursework-assignment-1">back to top</a>)</p>
+
 
 ## Exfiltration
 ### Exfiltrate data over ICMP
@@ -197,24 +226,21 @@ https://github.com/ariary/QueenSono
 ### Exfiltrate data over DNS
 https://github.com/m57/dnsteal
 
-```console
-$ vagrant provision --provision-with exfil 
-```
-
 - Collected files are tar-ed from the Confluence server sent to the attacker server via ICMP and DNS
 - All files that are to be exfiltrated can be placed at `/tmp/exfiltrate` on the Confluence server
 - Files received by the attacker can be found at `/tmp/qs/` (ICMP) and `/tmp/dnsteal/` (DNS)
 - Data is exfiltrated to the attacker at X minute intervals (currently set to 1).
 
+```console
+$ vagrant provision --provision-with exfil 
+```
+
 <p align="right">(<a href="#ict3204---coursework-assignment-1">back to top</a>)</p>
+
 
 ## Impact
 ### Ransomware Payload
 [Python Ransomware Sample](https://infosecwriteups.com/how-to-make-a-ransomware-with-python-c4764f2014cf)
-
-```console
-$ vagrant provision --provision-with ransom 
-```
 
 - Run `keygen.py` to generate the `2048-bit` RSA public and private keys used for the encryption process.
 - How the ransomware program works:
@@ -223,5 +249,9 @@ $ vagrant provision --provision-with ransom
   - Folders will be recursively traversed to find files to encrypt.
   - All files found will be encrypted with the public key.
   - All encrypted files will have a new extension `.r4ns0m3`.
+
+```console
+$ vagrant provision --provision-with ransom 
+```
 
 <p align="right">(<a href="#ict3204---coursework-assignment-1">back to top</a>)</p>
