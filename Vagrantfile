@@ -88,7 +88,7 @@ Vagrant.configure("2") do |config|
       preserve_order: true,
       run: "never",
       privileged: false,
-      path: "attack/2_PrivilegeEscalation/run_CVE-2021-3156.sh"
+      path: "attack/2_PrivilegeEscalation/privilege_escalation.sh"
 
     confluence.vm.provision "persistence",
       after: "setup",
