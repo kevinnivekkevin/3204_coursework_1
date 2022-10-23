@@ -52,7 +52,7 @@ View/edit the lucidchart diagram [here](https://lucid.app/lucidchart/6e6578d6-0b
       - [CVE-2022-26134 - Confluence RCE](#cve-2022-26134---confluence-rce)
     - [Privilege Escalation](#privilege-escalation)
       - [CVE-2021-3156 - Buffer Overflow Root Shell](#cve-2021-3156---buffer-overflow-root-shell)
-      - [KK5 Linux Process Injection Utility](#kk5-linux-process-injection-utility)
+      - [K55 Linux Process Injection Utility](#k55-linux-process-injection-utility)
     - [Persistence](#persistence)
       - [Persistence Using SUID Binaries](#persistence-using-suid-binaries)
       - [Persistence Using Account](#persistence-using-account)
@@ -174,8 +174,8 @@ confluence@confluence:/vagrant/attack/2_PrivilegeEscalation$ ./demo_1_cve.sh
 root@confluence:/tmp/pe/CVE-2021-3156#
 ```
 
-#### KK5 Linux Process Injection Utility
-[KK5](https://github.com/josh0xA/K55) is a linux payload injection tool that is used for injecting x86_64 shellcode payloads into running processes.
+#### K55 Linux Process Injection Utility
+[K55](https://github.com/josh0xA/K55) is a linux payload injection tool that is used for injecting x86_64 shellcode payloads into running processes.
 
 ##### Continuing from Exploited Root Shell (Terminal 1)
 ```console
