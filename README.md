@@ -166,6 +166,9 @@ https://github.com/CptGibbon/CVE-2021-3156
 - Vulnerability exploitation allows low privileged users to gain root privileges
 - Privilege escalation via "sudoedit -s" and a command-line argument that ends with a single backslash character
 
+#### KK5 Linux Process Injection Utility
+[KK5](https://github.com/josh0xA/K55) is a linux payload injection tool that is used for injecting x86_64 shellcode payloads into running processes.
+
 ```console
 HOST-MACHINE@HOST $ vagrant provision --provision-with privesc 
 ```
