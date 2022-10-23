@@ -1,13 +1,13 @@
 #!/bin/bash
 
 # General
-apt update -y
-apt install wget netcat -y
+apt-get update -y
+apt-get install wget netcat -y
 
 #[Initial Access]
 mkdir /tmp/1_InitialAccess
-cp /vagrant/attack/initialAccess/through_the_wire.py /tmp/1_InitialAccess/through_the_wire.py
-cp /vagrant/attack/initialAccess/initial_access.sh /tmp/1_InitialAccess/initial_access.sh
+cp /vagrant/attack/1_InitialAccess/through_the_wire.py /tmp/1_InitialAccess/through_the_wire.py
+cp /vagrant/attack/1_InitialAccess/runme.sh /tmp/1_InitialAccess/initial_access.sh
 
 #[EXFILTRATION]
 
@@ -15,7 +15,7 @@ cp /vagrant/attack/initialAccess/initial_access.sh /tmp/1_InitialAccess/initial_
 mkdir /tmp/qs
 wget https://github.com/ariary/QueenSono/releases/latest/download/qsreceiver -O /tmp/qs/qsreceiver
 chmod +x /tmp/qs/qsreceiver
-cp /vagrant/attack/exfiltration/run_qsreceiver.sh /tmp/qs/run_qsreceiver.sh;
+cp /vagrant/attack/5_Exfiltration/run_qsreceiver.sh /tmp/qs/run_qsreceiver.sh;
 chmod +x /tmp/qs/run_qsreceiver.sh
 nohup bash /tmp/qs/run_qsreceiver.sh &>/dev/null &
 

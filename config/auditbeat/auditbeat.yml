@@ -50,6 +50,7 @@ auditbeat.modules:
   - /var
   - /opt
   - /home
+  - /tmp
 
   exclude_files:
   - '(?i)\.sw[nop]$'

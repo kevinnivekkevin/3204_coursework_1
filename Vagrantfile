@@ -41,7 +41,7 @@ Vagrant.configure("2") do |config|
       type: "shell", 
       preserve_order: true,
       run: "never",
-      path: "attack/initialAccess/initial_access.sh"
+      path: "attack/1_InitialAccess/initial_access.sh"
   end
 
   # Postgres container
@@ -87,35 +87,36 @@ Vagrant.configure("2") do |config|
       type: "shell",
       preserve_order: true,
       run: "never",
-      path: "attack/privilegeEscalation/run_CVE-2021-3156.sh"
+      privileged: false,
+      path: "attack/2_PrivilegeEscalation/run_CVE-2021-3156.sh"
 
     confluence.vm.provision "persistence",
-      after: "privesc",
+      after: "setup",
       type: "shell",
       preserve_order: true,
       run: "never",
-      path: "attack/persistence/create_suidbinary.sh"
+      path: "attack/3_Persistence/persistence.sh"
 
     confluence.vm.provision "credentialaccess",
       after: "persistence",
       type: "shell",
       preserve_order: true,
       run: "never",
-      path: "attack/credentialAccess/credential_access.sh"
+      path: "attack/4_CredentialAccess/credential_access.sh"
 
     confluence.vm.provision "exfil", 
       after: "credentialaccess", 
       type: "shell", 
       preserve_order: true,
       run: "never",
-      path: "attack/exfiltration/exfiltration.sh"
+      path: "attack/5_Exfiltration/exfiltration.sh"
 
     confluence.vm.provision "ransom", 
       after: "exfil", 
       type: "shell", 
       preserve_order: true,
       run: "never",
-      path: "attack/impact/impact.sh"
+      path: "attack/6_Impact/impact.sh"
 
   end
 

@@ -7,4 +7,4 @@ int main(void) {
     setresuid(id, id, id);
     execve(paramList[0], paramList, NULL);
     return 0;
-	}
+}
