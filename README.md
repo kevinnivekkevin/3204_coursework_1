@@ -35,7 +35,7 @@ kernelCommandLine = "sysctl.vm.max_map_count=262144"
 ## Architecture (current, TBC)
 View/edit the lucidchart diagram [here](https://lucid.app/lucidchart/6e6578d6-0ba2-476d-b156-56c140aab2bd/edit?viewport_loc=-393%2C-96%2C2219%2C979%2C0_0&invitationId=inv_5979f7e6-9a73-4b7e-b835-07418f9dae9d#)
 
-<img src="https://user-images.githubusercontent.com/1593214/197373787-f5a11e7f-6db7-4052-b678-d579149e1273.png" width="1024">
+<img src="https://user-images.githubusercontent.com/1593214/197392810-d5950ac7-472b-47ed-a0f6-2cdf622235cc.png" width="1024">
 
 <p align="right">(<a href="#ict3204---coursework-assignment-1">back to top</a>)</p>
 
@@ -57,11 +57,11 @@ View/edit the lucidchart diagram [here](https://lucid.app/lucidchart/6e6578d6-0b
 1. Ensure Docker Engine is **running**
 2. From within project folder
     ```console
-    $ vagrant up
+    HOST-MACHINE@HOST $ vagrant up
     ```
     > Expected output 
       ```console
-      $ vagrant up
+      HOST-MACHINE@HOST $ vagrant up
       Bringing machine 'elk' up with 'docker' provider...
       Bringing machine 'kali' up with 'docker' provider...
       Bringing machine 'postgres' up with 'docker' provider...
@@ -71,7 +71,7 @@ View/edit the lucidchart diagram [here](https://lucid.app/lucidchart/6e6578d6-0b
       ```
       
       ```console
-      $ docker container ls
+      HOST-MACHINE@HOST $ docker container ls
       CONTAINER ID   IMAGE                           COMMAND                    CREATED           STATUS          PORTS                                                                                                      NAMES
       ...            postgres:14                     "docker-entrypoint.s…"     .. minutes ago    Up xx minutes   0.0.0.0:5432->5432/tcp                                                                                     postgres
       ...            kevinpook/confluence-7.13.0     "/bin/sh -c '/usr/sb…"     .. minutes ago    Up xx minutes   127.0.0.1:2201->22/tcp, 0.0.0.0:80->8090/tcp                                                               confluence
@@ -81,14 +81,14 @@ View/edit the lucidchart diagram [here](https://lucid.app/lucidchart/6e6578d6-0b
 
 ### Quick Commands
 ```console
-Get the status of the current vagrant machines
-$ vagrant status
+# Get the status of the current vagrant machines
+HOST-MACHINE@HOST $ vagrant status
 
-Delete and stop
-$ vagrant destroy
+# Delete and stop
+HOST-MACHINE@HOST $ vagrant destroy
 
-Stop only
-$ vagrant halt
+# Stop only
+HOST-MACHINE@HOST $ vagrant halt
 ```
 
 <p align="right">(<a href="#ict3204---coursework-assignment-1">back to top</a>)</p>
@@ -108,15 +108,15 @@ $ vagrant halt
 
 ## Part 3 - Attack Vector and Exploits
 The simulated attacker that is used to perform the relevant [MITRE ATT&CK](https://attack.mitre.org) techniques can be accessed by utilizing the **Attacker/Kali Docker container**
-```
-docker exec -it kali /bin/bash
+```console
+HOST-MACHINE@HOST $ docker exec -it kali /bin/bash
 ```
 
 ## Automation
 The process of the attacks can be automated by adding the commands to be executed in the host machine into a bash script. The script is passed into the Vagrantfile with the `run: "never"` parameter, which ensures that it does not run during the normal setup process. To manually activate the individual phases of the attack, run the following command: 
 
 ```console
-$ vagrant provision --provision-with <configured attack> 
+HOST-MACHINE@HOST $ vagrant provision --provision-with <configured attack> 
 ```
 
 ## Initial Access
@@ -126,8 +126,8 @@ $ vagrant provision --provision-with <configured attack>
     <img src="https://user-images.githubusercontent.com/1593214/197329877-ef4c952d-2de8-49e2-84ab-fde8a30edea3.png" width="512">
 
 Steps:
-  ```
-  host-machine $ docker exec -it kali /bin/bash
+  ```console
+  HOST-MACHINE@HOST $ docker exec -it kali /bin/bash
   root@kali # cd /tmo/1_InitialAccess
   root@kali # bash runme.sh
   ...
@@ -135,7 +135,7 @@ Steps:
   confluence@confluence:/opt/atlassian/confluence/bin $
   ```
 ```console
-$ vagrant provision --provision-with initialaccess 
+HOST-MACHINE@HOST $ vagrant provision --provision-with initialaccess 
 ```
 
 <p align="right">(<a href="#ict3204---coursework-assignment-1">back to top</a>)</p>
@@ -150,7 +150,7 @@ https://github.com/CptGibbon/CVE-2021-3156
 - Privilege escalation via "sudoedit -s" and a command-line argument that ends with a single backslash character
 
 ```console
-$ vagrant provision --provision-with privesc 
+HOST-MACHINE@HOST $ vagrant provision --provision-with privesc 
 ```
 
 <p align="right">(<a href="#ict3204---coursework-assignment-1">back to top</a>)</p>
@@ -162,7 +162,7 @@ $ vagrant provision --provision-with privesc
 - Allows attacker to regain root privileges from low privileged user account.
     
     Setup
-    ```
+    ```console
     root@confluence:/# cd /tmp
     root@confluence:/tmp# cp /vagrant/attak/persistence/binarysuid /tmp/suid.c
     ...
@@ -172,14 +172,14 @@ $ vagrant provision --provision-with privesc
     root@confluence:/tmp# rm suid.c
     ```
     Regain
-    ```
+    ```console
     confluence@confluence:/tmp$ ./suid
     whoami
     root
     ```
 
 ```console
-$ vagrant provision --provision-with persistence 
+HOST-MACHINE@HOST $ vagrant provision --provision-with persistence 
 ```
 
 <p align="right">(<a href="#ict3204---coursework-assignment-1">back to top</a>)</p>
@@ -196,7 +196,7 @@ $ vagrant provision --provision-with persistence
 [linPEAS](https://github.com/carlospolop/PEASS-ng/tree/master/linPEAS) is a script that searches for possible paths to escalate pivileges on Linux. Its functionalities include searching for possible passwords inside all the accessible files of the system and bruteforcing users with top2000 passwords.
 
 ```console
-$ vagrant provision --provision-with credentialaccess 
+HOST-MACHINE@HOST $ vagrant provision --provision-with credentialaccess 
 ```
 
 - Output from the tools used are stored at `/tmp/exfiltrate/credentialAccess`
@@ -216,7 +216,7 @@ https://github.com/m57/dnsteal
 - Data is exfiltrated to the attacker at X minute intervals (currently set to 1).
 
 ```console
-$ vagrant provision --provision-with exfil 
+HOST-MACHINE@HOST $ vagrant provision --provision-with exfil 
 ```
 
 <p align="right">(<a href="#ict3204---coursework-assignment-1">back to top</a>)</p>
@@ -235,7 +235,7 @@ $ vagrant provision --provision-with exfil
   - All encrypted files will have a new extension `.r4ns0m3`.
 
 ```console
-$ vagrant provision --provision-with ransom 
+HOST-MACHINE@HOST $ vagrant provision --provision-with ransom 
 ```
 
 <p align="right">(<a href="#ict3204---coursework-assignment-1">back to top</a>)</p>
