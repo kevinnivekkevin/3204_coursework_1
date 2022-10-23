@@ -17,7 +17,7 @@
 - Privilege Escalation - `Exploit Buffer Overflow`
 - Persistence - `Exploit SUID Binary File`
 - Credential Access - `Unsecured Credentials`
-- Collection & Exfiltration - `lorem ipsum`
+- Collection & Exfiltration - `Exfiltration via ICMP and DNS`
 - Impact - `Ransomware`
 
 ## Dependencies
