@@ -41,7 +41,7 @@ View/edit the lucidchart diagram [here](https://lucid.app/lucidchart/6e6578d6-0b
 
 # Usage 
 ### Table of Contents
-  - [Part 1 - Spinning up the Infrastructure](#part-1---spinning-up-the-infrastructure)
+  - [Part 1 - Spinning Up the Infrastructure](#part-1---spinning-up-the-infrastructure)
     - [Quick Commands](#quick-commands)
   - [Part 2 - Logs, Dashboards and Services](#part-2---logs-dashboards-and-services)
     - [Confluence - Attack Target](#confluence---attack-target)
@@ -61,12 +61,12 @@ View/edit the lucidchart diagram [here](https://lucid.app/lucidchart/6e6578d6-0b
       - [LaZagne](#lazagne)
       - [linPEAS](#linpeas)
     - [Exfiltration](#exfiltration)
-      - [Exfiltrate data over ICMP](#exfiltrate-data-over-icmp)
-      - [Exfiltrate data over DNS](#exfiltrate-data-over-dns)
+      - [Exfiltrate Data Over ICMP](#exfiltrate-data-over-icmp)
+      - [Exfiltrate Data Over DNS](#exfiltrate-data-over-dns)
     - [Impact](#impact)
       - [Ransomware Payload](#ransomware-payload)
 
-## Part 1 - Spinning up the Infrastructure
+## Part 1 - Spinning Up the Infrastructure
 1. Ensure Docker Engine is **running**
 2. From within project folder
     ```console
