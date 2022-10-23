@@ -209,7 +209,7 @@ HOST-MACHINE@HOST $ vagrant provision --provision-with persistence
 [LaZagne](https://github.com/AlessandroZ/LaZagne) is an application that is used to retrieve passwords stored on a local computer.
 
 #### linPEAS
-[linPEAS](https://github.com/carlospolop/PEASS-ng/tree/master/linPEAS) is a script that searches for possible paths to escalate pivileges on Linux. Its functionalities include searching for possible passwords inside all the accessible files of the system and bruteforcing users with top2000 passwords.
+[linPEAS](https://github.com/carlospolop/PEASS-ng/tree/master/linPEAS) is a script that searches for possible paths to escalate privileges on Linux. Its functionalities include searching for possible passwords inside all the accessible files of the system and bruteforcing users with top 2000 passwords.
 
 ```console
 HOST-MACHINE@HOST $ vagrant provision --provision-with credentialaccess 
