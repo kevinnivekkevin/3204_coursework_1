@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Clean Up
+cd /
+rm -rf /tmp/pe
+
 # Download CVE-2021-3156 Exploit
 mkdir /tmp/pe
 cd /tmp/pe

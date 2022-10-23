@@ -9,6 +9,6 @@ cd K55
 chmod +x build-install.sh
 ./build-install.sh
 
-# Run a Sample Process
+# Run a Sample Process (Terminal 1)
 cd k55_example_process
 ./k55_test_process
