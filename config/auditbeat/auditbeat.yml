@@ -47,6 +47,9 @@ auditbeat.modules:
   - /sbin
   - /usr/sbin
   - /etc
+  - /var
+  - /opt
+  - /home
 
   exclude_files:
   - '(?i)\.sw[nop]$'

@@ -11,3 +11,4 @@ public.pem
 build/
 dist/
 *.spec/
+sudo*

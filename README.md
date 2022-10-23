@@ -38,16 +38,15 @@ View/edit the lucidchart diagram [here](https://lucid.app/lucidchart/6e6578d6-0b
 <p align="right">(<a href="#ict3204---coursework-assignment-1">back to top</a>)</p>
 
 ## Usage 
-Sections
-1. [Part 1 - Spinning up the Infrastructure](https://github.com/kevinnivekkevin/3204_coursework_1/edit/rewrite2/README.md#part-1---spinning-up-the-infrastructure)
-2. [Part 2 - Logs, Dashboards and Services](https://github.com/kevinnivekkevin/3204_coursework_1/edit/rewrite2/README.md#part-2---logs-dashboards-and-services)
-3. [Part 3 - Attack Vector and Exploits](https://github.com/kevinnivekkevin/3204_coursework_1/edit/rewrite2/README.md#part-3---attack-vector-and-exploits)
-    - [Initial Access](https://github.com/kevinnivekkevin/3204_coursework_1/edit/main/README.md#initial-access)
-    - [Privilege Escalation](https://github.com/kevinnivekkevin/3204_coursework_1/edit/main/README.md#privilege-escalation)
-    - [Persistence](https://github.com/kevinnivekkevin/3204_coursework_1/edit/main/README.md#persistence)
-    - [Credential Access](https://github.com/kevinnivekkevin/3204_coursework_1/edit/main/README.md#credential-access)
-    - [Collection & Exfiltration](https://github.com/kevinnivekkevin/3204_coursework_1/edit/main/README.md#collection--exfiltration)
-    - [Impact](https://github.com/kevinnivekkevin/3204_coursework_1/edit/main/README.md#impact)
+- [Part 1 - Spinning up the Infrastructure](#part-1---spinning-up-the-infrastructure)
+- [Part 2 - Logs, Dashboards and Services](#part-2---logs-dashboards-and-services)
+- [Part 3 - Attack Vector and Exploits](#part-3---attack-vector-and-exploits)
+  - [Initial Access](#initial-access)
+  - [Privilege Escalation](#privilege-escalation)
+  - [Persistence](#persistence)
+  - [Credential Access](#credential-access)
+  - [Collection & Exfiltration](#collection--exfiltration)
+  - [Impact](#impact)
 
 ## Part 1 - Spinning up the Infrastructure
 1. Ensure Docker Engine is **running**
@@ -55,9 +54,9 @@ Sections
     ```console
     $ vagrant up
     ```
-    > Expected output (Remember to add `--no-provision` for startup)
+    > Expected output 
       ```console
-      $ vagrant up --no-provision
+      $ vagrant up
       Bringing machine 'elk' up with 'docker' provider...
       Bringing machine 'kali' up with 'docker' provider...
       Bringing machine 'postgres' up with 'docker' provider...
@@ -161,7 +160,6 @@ https://github.com/ariary/QueenSono
 https://github.com/m57/dnsteal
 
 ```console
-Run the attack with the following command
 $ vagrant provision --provision-with exfil 
 ```
 
@@ -177,7 +175,6 @@ $ vagrant provision --provision-with exfil
 [Python Ransomware Sample](https://infosecwriteups.com/how-to-make-a-ransomware-with-python-c4764f2014cf)
 
 ```console
-Run the attack with the following command
 $ vagrant provision --provision-with ransom 
 ```
 
