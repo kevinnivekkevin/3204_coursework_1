@@ -36,7 +36,12 @@ Vagrant.configure("2") do |config|
       run: "once",
       path: "config/kali/kali_setup.sh"
 
-  #  kali.vm.provision :shell, :path => "config/kali/kali_setup.sh"
+    kali.vm.provision "initialAccess", 
+      after: "prep",
+      type: "shell", 
+      preserve_order: true,
+      run: "never",
+      path: "attack/initialAccess/initial_access.sh"
   end
 
   # Postgres container
@@ -77,8 +82,29 @@ Vagrant.configure("2") do |config|
       run: "once",
       path: "config/confluence/confluence_setup.sh"
 
+	confluence.vm.provision "privesc",
+	  after: "setup",
+	  type: "shell",
+	  preserve_order: true,
+	  run: "never",
+	  path: "attack/privilegeEscalation/run_CVE-2021-3156.sh"
+
+	confluence.vm.provision "persistence",
+	  after: "setup",
+	  type: "shell",
+	  preserve_order: true,
+	  run: "never",
+	  path: "attack/persistence/create_suidbinary.sh"
+
+	confluence.vm.provision "credentialaccess",
+	  after: "persistence",
+	  type: "shell",
+	  preserve_order: true,
+	  run: "never",
+	  path: "attack/credentialAccess/credential_access.sh"
+
     confluence.vm.provision "exfil", 
-      after: "setup", 
+      after: "credentialaccess", 
       type: "shell", 
       preserve_order: true,
       run: "never",
@@ -90,9 +116,7 @@ Vagrant.configure("2") do |config|
       preserve_order: true,
       run: "never",
       path: "attack/impact/impact.sh"
-      
-    # confluence.vm.provision :shell, :path => "attack/exfiltration/exfiltration.sh"
-    # confluence.vm.provision :shell, :path => "attack/impact/impact.sh"
+
   end
 
 end

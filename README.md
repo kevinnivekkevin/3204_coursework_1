@@ -16,14 +16,9 @@
 - Initial Access - `Exploit Public-Facing Application`
 - Privilege Escalation - `Exploit Low Privileged User Shell`
 - Persistence - `lorem ipsum`
-- Credential Access - `lorem ipsum`
-<<<<<<< HEAD
+- Credential Access - `Unsecured Credentials`
 - Collection & Exfiltration - `lorem ipsum`
 - Impact - `Ransomware`
-=======
-- Exfiltration - `Exfiltration over alternative protocol`
-- Impact - `lorem ipsum`
->>>>>>> main
 
 ### Dependencies
 1. `Vagrant` - https://www.vagrantup.com/downloads
@@ -45,15 +40,33 @@ View/edit the lucidchart diagram [here](https://lucid.app/lucidchart/6e6578d6-0b
 <p align="right">(<a href="#ict3204---coursework-assignment-1">back to top</a>)</p>
 
 ## Usage 
-- [Part 1 - Spinning up the Infrastructure](#part-1---spinning-up-the-infrastructure)
-- [Part 2 - Logs, Dashboards and Services](#part-2---logs-dashboards-and-services)
-- [Part 3 - Attack Vector and Exploits](#part-3---attack-vector-and-exploits)
+- [ICT3204 - Coursework Assignment 1](#ict3204---coursework-assignment-1)
+    - [Members](#members)
+    - [MITRE ATT&CK Techniques Chosen](#mitre-attck-techniques-chosen)
+    - [Dependencies](#dependencies)
+  - [Architecture (current, TBC)](#architecture-current-tbc)
+  - [Usage](#usage)
+  - [Part 1 - Spinning up the Infrastructure](#part-1---spinning-up-the-infrastructure)
+    - [Quick Commands](#quick-commands)
+  - [Part 2 - Logs, Dashboards and Services](#part-2---logs-dashboards-and-services)
+    - [Confluence - Attack target](#confluence---attack-target)
+    - [Kibana(ELK) Dashboard](#kibanaelk-dashboard)
+  - [Part 3 - Attack Vector and Exploits](#part-3---attack-vector-and-exploits)
+  - [Automation](#automation)
   - [Initial Access](#initial-access)
+    - [CVE-2022-26134 - Confluence RCE](#cve-2022-26134---confluence-rce)
   - [Privilege Escalation](#privilege-escalation)
+    - [CVE-2021-3156 - Buffer Overflow Root Shell](#cve-2021-3156---buffer-overflow-root-shell)
   - [Persistence](#persistence)
   - [Credential Access](#credential-access)
-  - [Collection & Exfiltration](#collection--exfiltration)
+    - [DumpsterDiver](#dumpsterdiver)
+    - [LaZagne](#lazagne)
+    - [linPEAS](#linpeas)
+  - [Exfiltration](#exfiltration)
+    - [Exfiltrate data over ICMP](#exfiltrate-data-over-icmp)
+    - [Exfiltrate data over DNS](#exfiltrate-data-over-dns)
   - [Impact](#impact)
+    - [Ransomware Payload](#ransomware-payload)
 
 ## Part 1 - Spinning up the Infrastructure
 1. Ensure Docker Engine is **running**
@@ -155,9 +168,20 @@ lorem ipsum
 <p align="right">(<a href="#ict3204---coursework-assignment-1">back to top</a>)</p>
 
 ## Credential Access
+### DumpsterDiver
+[DumpsterDiver](https://github.com/securing/DumpsterDiver) is a tool that is used to detect any hardcoded secrets like keys or passwords.
+
+### LaZagne
+[LaZagne](https://github.com/AlessandroZ/LaZagne) is an application that is used to retrieve passwords stored on a local computer.
+
+### linPEAS
+[linPEAS](https://github.com/carlospolop/PEASS-ng/tree/master/linPEAS) is a script that searches for possible paths to escalate pivileges on Linux. Its functionalities include searching for possible passwords inside all the accessible files of the system and bruteforcing users with top2000 passwords.
+
+```console
+$ vagrant provision --provision-with credentialaccess 
 ```
-lorem ipsum
-```
+- Output from the tools used are stored at /tmp/exfiltrate/credentialAccess
+
 <p align="right">(<a href="#ict3204---coursework-assignment-1">back to top</a>)</p>
 
 ## Exfiltration
