@@ -17,7 +17,7 @@
 - Privilege Escalation - `Exploit Low Privileged User Shell`
 - Persistence - `lorem ipsum`
 - Credential Access - `lorem ipsum`
-- Collection & Exfiltration - `lorem ipsum`
+- Exfiltration - `Exfiltration over alternative protocol`
 - Impact - `lorem ipsum`
 
 #### Dependencies
@@ -41,7 +41,7 @@ Sections
     - [Privilege Escalation](https://github.com/kevinnivekkevin/3204_coursework_1/edit/main/README.md#privilege-escalation)
     - [Persistence](https://github.com/kevinnivekkevin/3204_coursework_1/edit/main/README.md#persistence)
     - [Credential Access](https://github.com/kevinnivekkevin/3204_coursework_1/edit/main/README.md#credential-access)
-    - [Collection & Exfiltration](https://github.com/kevinnivekkevin/3204_coursework_1/edit/main/README.md#collection--exfiltration)
+    - [Exfiltration](https://github.com/kevinnivekkevin/3204_coursework_1/edit/main/README.md#exfiltration)
     - [Impact](https://github.com/kevinnivekkevin/3204_coursework_1/edit/main/README.md#impact)
 
 ### Part 1 - Spinning up the Infrastructure
@@ -130,7 +130,7 @@ lorem ipsum
 ```
 <p align="right">(<a href="#ict3204---coursework-assignment-1">back to top</a>)</p>
 
-### Collection & Exfiltration
+### Exfiltration
 #### Exfiltrate data over ICMP
 https://github.com/ariary/QueenSono
 #### Exfiltrate data over DNS
