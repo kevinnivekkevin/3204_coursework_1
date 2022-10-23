@@ -40,12 +40,7 @@ View/edit the lucidchart diagram [here](https://lucid.app/lucidchart/6e6578d6-0b
 <p align="right">(<a href="#ict3204---coursework-assignment-1">back to top</a>)</p>
 
 # Usage 
-- [ICT3204 - Coursework Assignment 1](#ict3204---coursework-assignment-1)
-  - [Members](#members)
-  - [MITRE ATT&CK Techniques Chosen](#mitre-attck-techniques-chosen)
-  - [Dependencies](#dependencies)
-  - [Architecture (current, TBC)](#architecture-current-tbc)
-- [Usage](#usage)
+### Table of contents
   - [Part 1 - Spinning up the Infrastructure](#part-1---spinning-up-the-infrastructure)
     - [Quick Commands](#quick-commands)
   - [Part 2 - Logs, Dashboards and Services](#part-2---logs-dashboards-and-services)
