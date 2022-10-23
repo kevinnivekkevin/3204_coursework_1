@@ -7,7 +7,7 @@ apt-get install wget netcat -y
 #[Initial Access]
 mkdir /tmp/1_InitialAccess
 cp /vagrant/attack/1_InitialAccess/through_the_wire.py /tmp/1_InitialAccess/through_the_wire.py
-cp /vagrant/attack/1_InitialAccess/runme.sh /tmp/1_InitialAccess/initial_access.sh
+cp /vagrant/attack/1_InitialAccess/initial_access.sh /tmp/1_InitialAccess/initial_access.sh
 
 #[EXFILTRATION]
 

@@ -128,7 +128,7 @@ $ vagrant provision --provision-with <configured attack>
 Steps:
   ```
   host-machine $ docker exec -it kali /bin/bash
-  root@kali # cd /tmo/1_InitialAccess
+  root@kali # cd /tmp/1_InitialAccess
   root@kali # bash runme.sh
   ...
   ...
