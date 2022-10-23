@@ -82,26 +82,26 @@ Vagrant.configure("2") do |config|
       run: "once",
       path: "config/confluence/confluence_setup.sh"
 
-	confluence.vm.provision "privesc",
-	  after: "setup",
-	  type: "shell",
-	  preserve_order: true,
-	  run: "never",
-	  path: "attack/privilegeEscalation/run_CVE-2021-3156.sh"
+    confluence.vm.provision "privesc",
+      after: "setup",
+      type: "shell",
+      preserve_order: true,
+      run: "never",
+      path: "attack/privilegeEscalation/run_CVE-2021-3156.sh"
 
-	confluence.vm.provision "persistence",
-	  after: "setup",
-	  type: "shell",
-	  preserve_order: true,
-	  run: "never",
-	  path: "attack/persistence/create_suidbinary.sh"
+    confluence.vm.provision "persistence",
+      after: "setup",
+      type: "shell",
+      preserve_order: true,
+      run: "never",
+      path: "attack/persistence/create_suidbinary.sh"
 
-	confluence.vm.provision "credentialaccess",
-	  after: "persistence",
-	  type: "shell",
-	  preserve_order: true,
-	  run: "never",
-	  path: "attack/credentialAccess/credential_access.sh"
+    confluence.vm.provision "credentialaccess",
+      after: "persistence",
+      type: "shell",
+      preserve_order: true,
+      run: "never",
+      path: "attack/credentialAccess/credential_access.sh"
 
     confluence.vm.provision "exfil", 
       after: "credentialaccess", 
