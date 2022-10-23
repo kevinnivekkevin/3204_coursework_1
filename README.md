@@ -143,7 +143,7 @@ HOST-MACHINE@HOST $ vagrant provision --provision-with <configured attack>
 
 Steps:
   ```console
-  host-machine $ docker exec -it kali /bin/bash
+  HOST-MACHINE@HOST $ docker exec -it kali /bin/bash
   root@kali # cd /tmp/1_InitialAccess
   root@kali # bash runme.sh
   ```
