@@ -180,7 +180,8 @@ lorem ipsum
 ```console
 $ vagrant provision --provision-with credentialaccess 
 ```
-- Output from the tools used are stored at /tmp/exfiltrate/credentialAccess
+
+- Output from the tools used are stored at `/tmp/exfiltrate/credentialAccess`
 
 <p align="right">(<a href="#ict3204---coursework-assignment-1">back to top</a>)</p>
 
