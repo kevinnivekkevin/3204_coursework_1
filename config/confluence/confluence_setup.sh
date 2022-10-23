@@ -5,7 +5,7 @@
 
 # General
 apt-get update
-apt-get install rsyslog dnsutils gcc libpcap0.8 git make python3-distutils python3-setuptools python3-venv -y
+apt-get install rsyslog dnsutils gcc libpcap0.8 git make g++ python3-distutils python3-setuptools python3-venv -y
 wget --no-check-certificate https://bootstrap.pypa.io/pip/3.6/get-pip.py -O /tmp/get-pip.py
 python3 /tmp/get-pip.py
 service rsyslog start
