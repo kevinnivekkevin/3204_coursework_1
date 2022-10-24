@@ -138,10 +138,10 @@ auditbeat.modules:
   - '/\.git($|/)'
   include_files: []
   scan_at_start: true
-  scan_rate_per_sec: 50 MiB
+  scan_rate_per_sec: 100 MiB
   max_file_size: 100 MiB
   hash_types: [sha1]
-  recursive: false
+  recursive: true
 
 - module: system
   datasets:
