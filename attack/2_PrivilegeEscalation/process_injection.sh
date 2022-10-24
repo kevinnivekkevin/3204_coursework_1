@@ -3,7 +3,7 @@
 # Check if privilege escalation folder exists
 if [ -d "/tmp/pe" ]
 then
-	# Clean Up
+	# Clean Up Before Automation
 	cd /
 	rm -rf /tmp/pe
 	
@@ -39,4 +39,7 @@ else
 	# ./k55_test_process
 	echo "Patiently waiting to be attacked..."
 fi
-exit 0
+
+# Clean Up After Automation
+cd /
+rm -rf /tmp/pe

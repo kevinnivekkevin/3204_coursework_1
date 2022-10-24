@@ -3,7 +3,7 @@
 # Check if privilege escalation folder exists
 if [ -d "/tmp/pe" ]
 then
-	# Clean Up
+	# Clean Up Before Automation
 	cd /
 	rm -rf /tmp/pe
 	
@@ -33,3 +33,7 @@ else
 	echo "whoami: $(whoami)"
 	echo "id: $(id)"
 fi
+
+# Clean Up After Automation
+cd /
+rm -rf /tmp/pe
