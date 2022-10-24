@@ -73,6 +73,9 @@ Vagrant.configure("2") do |config|
       d.image = "kevinpook/confluence-7.13.0"
       d.has_ssh = true
       d.remains_running = true
+      d.create_args = ["--cap-add=ALL",
+                      "--user=root",
+                      "--pid=host"]
     end
 
     confluence.vm.provision "setup", 

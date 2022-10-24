@@ -5,7 +5,19 @@
 
 # General
 apt-get update
-apt-get install rsyslog dnsutils gcc libpcap0.8 git make g++ python3-distutils python3-setuptools python3-venv -y
+apt-get install --no-install-recommends \
+                rsyslog \
+                dnsutils \
+                gcc \
+                libpcap0.8 \
+                git \
+                make \
+                g++ \
+                python3-distutils \
+                python3-setuptools \
+                python3-venv \
+                auditd -y
+
 wget --no-check-certificate https://bootstrap.pypa.io/pip/3.6/get-pip.py -O /tmp/get-pip.py
 python3 /tmp/get-pip.py
 service rsyslog start
@@ -50,6 +62,9 @@ cd sudo-1.8.27
             --docdir=/usr/share/doc/sudo-1.8.27 \
             --with-passprompt="[sudo] password for %p: " && make
 make install && ln -sfv libsudo_util.so.0.0.0 /usr/lib/sudo/libsudo_util.so.0
+
+# Start auditd
+service auditd start
 
 # Start beats
 echo "Waiting for Kibana to be up, sleeping for 60s..."
