@@ -20,11 +20,10 @@
 - Collection & Exfiltration - `Exfiltration via ICMP and DNS`
 - Impact - `Ransomware`
 
-## Dependencies
+## Host Machine Dependencies
 1. `Vagrant` - https://www.vagrantup.com/downloads
 2. `Docker Engine` - https://www.docker.com/
-3. `Python 3` - https://www.python.org/
-4. If using WSL2
+3. If using WSL2
    - Create file `.wslconfig` in `C:\Users\user`
    - Edit and add the following line: 
 ```
