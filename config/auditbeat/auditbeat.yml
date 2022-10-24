@@ -127,7 +127,7 @@ auditbeat.modules:
   - /sbin
   - /usr/sbin
   - /etc
-  - /var
+  #- /var
   - /opt
   - /home
   - /tmp
