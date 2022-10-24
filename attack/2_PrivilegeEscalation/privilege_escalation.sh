@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Check if CVE-2021-3156 folder exists
+# Check if privilege escalation folder exists
 if [ -d "/tmp/pe" ]
 then
 	# Clean Up
