@@ -198,6 +198,9 @@ root@confluence:/vagrant/attack/2_PrivilegeEscalation# ./demo_3_process_injectio
 ```console
 HOST-MACHINE@HOST $ vagrant provision --provision-with privesc 
 ```
+```console
+HOST-MACHINE@HOST $ vagrant provision --provision-with processinjection
+```
 
 <p align="right">(<a href="#ict3204---coursework-assignment-1">back to top</a>)</p>
 
