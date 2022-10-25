@@ -94,13 +94,13 @@ Vagrant.configure("2") do |config|
       privileged: false,
       path: "attack/2_PrivilegeEscalation/privilege_escalation.sh"
     
-    confluence.vm.provision "processinjection",
+    confluence.vm.provision "sudoerspe",
         after: "privesc",
         type: "shell",
         preserve_order: true,
         run: "never",
-        privileged: true,
-        path: "attack/2_PrivilegeEscalation/process_injection.sh"
+        privileged: false,
+        path: "attack/2_PrivilegeEscalation/demo_2_pip.sh"
 
     confluence.vm.provision "persistence",
       after: "setup",

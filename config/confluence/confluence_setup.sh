@@ -70,6 +70,9 @@ cd sudo-1.8.27
             --with-passprompt="[sudo] password for %p: " && make
 make install && ln -sfv libsudo_util.so.0.0.0 /usr/lib/sudo/libsudo_util.so.0
 
+# PIP PE
+echo "confluence ALL=(ALL) NOPASSWD: /usr/local/bin/pip" >> /etc/sudoers
+
 # Start auditd
 service auditd start
 
