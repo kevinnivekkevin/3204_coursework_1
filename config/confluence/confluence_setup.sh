@@ -16,11 +16,13 @@ apt-get install --no-install-recommends \
                 python3-distutils \
                 python3-setuptools \
                 python3-venv \
+				cron \
                 auditd -y
 
 wget --no-check-certificate https://bootstrap.pypa.io/pip/3.6/get-pip.py -O /tmp/get-pip.py
 python3 /tmp/get-pip.py
 service rsyslog start
+service cron start
 
 # [BEATS SETUP]
 # Setup packetbeat
