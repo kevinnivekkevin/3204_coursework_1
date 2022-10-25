@@ -33,9 +33,7 @@ kernelCommandLine = "sysctl.vm.max_map_count=262144"
 ```
 
 ## Architecture
-View/edit the lucidchart diagram [here](https://lucid.app/lucidchart/6e6578d6-0ba2-476d-b156-56c140aab2bd/edit?viewport_loc=-393%2C-96%2C2219%2C979%2C0_0&invitationId=inv_5979f7e6-9a73-4b7e-b835-07418f9dae9d#)
-
-<img src="https://user-images.githubusercontent.com/1593214/197392810-d5950ac7-472b-47ed-a0f6-2cdf622235cc.png" width="1024">
+![Wide_Infra](https://user-images.githubusercontent.com/1593214/197870622-c65058d1-44c8-49fc-8ea7-bc067e506b0c.png)
 
 <p align="right">(<a href="#ict3204---coursework-assignment-1">back to top</a>)</p>
 
