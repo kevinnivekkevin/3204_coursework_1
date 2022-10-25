@@ -230,22 +230,12 @@ confluence@confluence:/tmp/pe$ ./sudoers_pe.sh
 root@confluence:/#
 ```
 
-##### Running a 2nd Exploited Root Shell (Terminal 2)
-```console
-root@confluence:/# su confluence
-confluence@confluence:/$ cd /tmp/pe/CVE-2021-3156
-confluence@confluence:/tmp/pe/CVE-2021-3156$ ./exploit
-root@confluence:/tmp/pe/CVE-2021-3156# cd /vagrant/attack/2_PrivilegeEscalation
-root@confluence:/vagrant/attack/2_PrivilegeEscalation# sed -i -e 's/\r$//' demo_3_process_injection.sh
-root@confluence:/vagrant/attack/2_PrivilegeEscalation# ./demo_3_process_injection.sh
-```
-
 #### Automation Script
 ```console
 HOST-MACHINE@HOST $ vagrant provision --provision-with privesc 
 ```
 ```console
-HOST-MACHINE@HOST $ vagrant provision --provision-with processinjection
+HOST-MACHINE@HOST $ vagrant provision --provision-with sudoerspe
 ```
 
 <p align="right">(<a href="#ict3204---coursework-assignment-1">back to top</a>)</p>
