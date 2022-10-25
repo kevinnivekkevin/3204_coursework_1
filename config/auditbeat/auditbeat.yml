@@ -55,6 +55,7 @@ auditbeat.modules:
     -a always,exit -F arch=b64 -S setuid -S setgid -S setreuid -S setregid -F exit=EPERM -k T1166_Seuid_and_Setgid
     -a always,exit -F arch=b32 -S setuid -S setgid -S setreuid -S setregid -F exit=EPERM -k T1166_Seuid_and_Setgid
     -w /usr/bin/ -p wa -k T1068_Exploitation_for_Privilege_Escalation
+    -a always,exit -F arch=b64 -S execve,execveat -k exec
 
     -a exit,always -F arch=b64 -F euid=0 -S execve -k T1078_Valid_Accounts
     -a exit,always -F arch=b32 -F euid=0 -S execve -k T1078_Valid_Accounts
@@ -112,13 +113,15 @@ auditbeat.modules:
     #-a always,exit -F arch=b64 -S accept,bind,connect -F key=external-access
 
     ## Identity changes.
-    #-w /etc/group -p wa -k identity
-    #-w /etc/passwd -p wa -k identity
-    #-w /etc/gshadow -p wa -k identity
+    -w /etc/group -p wa -k identity
+    -w /etc/passwd -p wa -k identity
+    -w /etc/gshadow -p wa -k identity
 
     ## Unauthorized access attempts.
-    #-a always,exit -F arch=b64 -S open,creat,truncate,ftruncate,openat,open_by_handle_at -F exit=-EACCES -k access
-    #-a always,exit -F arch=b64 -S open,creat,truncate,ftruncate,openat,open_by_handle_at -F exit=-EPERM -k access
+    -a always,exit -F arch=b32 -S open,creat,truncate,ftruncate,openat,open_by_handle_at -F exit=-EACCES -F auid>=1000 -F auid!=4294967295 -F key=access
+    -a always,exit -F arch=b32 -S open,creat,truncate,ftruncate,openat,open_by_handle_at -F exit=-EPERM -F auid>=1000 -F auid!=4294967295 -F key=access
+    -a always,exit -F arch=b64 -S open,truncate,ftruncate,creat,openat,open_by_handle_at -F exit=-EACCES -F auid>=1000 -F auid!=4294967295 -F key=access
+    -a always,exit -F arch=b64 -S open,truncate,ftruncate,creat,openat,open_by_handle_at -F exit=-EPERM -F auid>=1000 -F auid!=4294967295 -F key=access
 
 - module: file_integrity
   paths:
@@ -127,7 +130,7 @@ auditbeat.modules:
   - /sbin
   - /usr/sbin
   - /etc
-  #- /var
+  - /var/atlassian/application-data/confluence
   - /opt
   - /home
   - /tmp
