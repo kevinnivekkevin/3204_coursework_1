@@ -113,4 +113,3 @@ cd /
 rm -rf /tmp/pe
 rm -rf /tmp/persistence
 rm -rf /tmp/cryptic
-rm /tmp/*

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+    <title>Hacked By Bipin</title>
+    <style type="text/css">
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background: #000;
+      color: #0f0;
+      padding: 24px;
+    }
+    p {
+      padding: 12px 0;
+    }
+    .blink{animation:blink 1s infinite}@keyframes blink{to{opacity:.0;}}
+    </style>
+  </head>
+  <body style="">
+    <iframe src="https://giphy.com/embed/3knKct3fGqxhK" width="480" height="281" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/kung-fury-hackerman-3knKct3fGqxhK"></a></p>
+    <h1>OHHHHH NOOOOOOO!!!???<span class="blink">_</span></h1>
+    <br>
+    <h3>What happened to my files?</h3>
+    <p>I am the hackerman. I am hacking your system. File is encrypt.<span class="blink">_</span></p>
+
+    <h3>How this happen?</h3>
+    <p>Suay. This kind of thing happen you can try to brute force but its IMPOOOOSIBLLLE!<span class="blink">_</span></p>
+
+    <h3>How can I restore my files?</h3>
+    <p>Send me money. My bitconnect ID is <span class="blink" style='color:cyan'>0xA895F950150145b5B9a646AF8cE4C06eDCb116Cf</span>. After send me money, I will send you key. Use the key to open the door. Password is "Open Sesame!".<span class="blink">_</span></p>
+    <pre>
+      root@confluence # <span style='color:red'>id</span>
+      <span style='color:white'>uid=0(root) gid=0(root) groups=0(root)</span>
+      root@confluence # <span style='color:red'>echo "done!"<span class="blink">_</span></span>
+    </pre>
+    <form>
+      <label for="ransom">Enter Transaction ID:</label><br>
+      <input type="text" id="ransom" name="ransom"><br>
+      <input type="submit" value="Send me key NOW">
+    </form>
+  </body>
+</html>
