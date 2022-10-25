@@ -65,9 +65,10 @@ kernelCommandLine = "sysctl.vm.max_map_count=262144"
     - [Impact](#impact)
       - [Ransomware Payload](#ransomware-payload)
   - [Documentation](#documentation)
-    - [Kibana Dashboard](kibana-dashboard)
+    - [YouTube](youtube)
     - [Poster](poster)
-    - [YouTube](YouTube)
+    - [Kibana Dashboard](kibana-dashboard)
+
 
 ## Part 1 - Spinning Up The Infrastructure
 1. Ensure Docker Engine is **running**
@@ -367,8 +368,10 @@ HOST-MACHINE@HOST $ vagrant provision --provision-with ransom
 <p align="right">(<a href="#ict3204---coursework-assignment-1">back to top</a>)</p>
 
 ## Documentation
-### Kibana Dashboard
-![dashboard](https://user-images.githubusercontent.com/27985157/197850136-80221656-b748-406f-856e-8489cd683966.png)
+### YouTube
 
 ### Poster
-### YouTube
+![poster](https://user-images.githubusercontent.com/27985157/197874389-420581e4-4acb-45b5-a4ee-55999d75a117.png)
+
+### Kibana Dashboard
+![dashboard](https://user-images.githubusercontent.com/27985157/197850136-80221656-b748-406f-856e-8489cd683966.png)
