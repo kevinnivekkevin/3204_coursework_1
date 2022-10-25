@@ -3,7 +3,7 @@
 
 # netcat / attacker IP (This machine)
 LHOST=10.0.0.5
-LHOSTPORT=4242
+LHOSTPORT=4243
 
 # target machine IP (Confluence)
 RHOST=10.0.0.3
