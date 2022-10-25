@@ -55,7 +55,7 @@ View/edit the lucidchart diagram [here](https://lucid.app/lucidchart/6e6578d6-0b
     - [Persistence](#persistence)
       - [Persistence Using SUID Binaries](#persistence-using-suid-binaries)
       - [Persistence Using Account](#persistence-using-account)
-	  - [Persistence Using Account](#persistence-using-crontab)
+	  - [Persistence Using Crontab](#persistence-using-crontab)
     - [Credential Access](#credential-access)
       - [DumpsterDiver](#dumpsterdiver)
       - [LaZagne](#lazagne)
