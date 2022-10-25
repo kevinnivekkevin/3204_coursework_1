@@ -371,7 +371,7 @@ HOST-MACHINE@HOST $ vagrant provision --provision-with ransom
 ### YouTube
 
 ### Poster
-![poster](https://user-images.githubusercontent.com/27985157/197873839-2b23dcc4-4ec0-46d2-9be3-51f774d9e2ad.png)
+![poster](https://user-images.githubusercontent.com/27985157/197878468-ccabc5e0-87fc-4f5b-b77b-af40834a6e7f.png)
 
 ### Kibana Dashboard
 ![dashboard](https://user-images.githubusercontent.com/27985157/197850136-80221656-b748-406f-856e-8489cd683966.png)
