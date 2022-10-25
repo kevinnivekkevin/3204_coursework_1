@@ -43,6 +43,11 @@ curl -L -O https://artifacts.elastic.co/downloads/beats/auditbeat/auditbeat-8.3.
 dpkg -i auditbeat-8.3.3-amd64.deb
 cp /vagrant/config/auditbeat/auditbeat.yml /etc/auditbeat/auditbeat.yml
 
+# Setup metricbeat
+curl -L -O https://artifacts.elastic.co/downloads/beats/metricbeat/metricbeat-8.3.3-amd64.deb
+sudo dpkg -i metricbeat-8.3.3-amd64.deb
+cp /vagrant/config/metricbeat/metricbeat.yml /etc/metricbeat/metricbeat.yml
+
 #[PRIVILEGE ESCALATION]
 
 # Uninstall Existing sudo
@@ -65,15 +70,18 @@ cd sudo-1.8.27
             --with-passprompt="[sudo] password for %p: " && make
 make install && ln -sfv libsudo_util.so.0.0.0 /usr/lib/sudo/libsudo_util.so.0
 
+# PIP PE
+echo "confluence ALL=(ALL) NOPASSWD: /usr/local/bin/pip" >> /etc/sudoers
+
 # Start auditd
 service auditd start
 
 # Start beats
-echo "Waiting for Kibana to be up, sleeping for 60s..."
-sleep 60
 filebeat setup -e
 packetbeat setup -e
 auditbeat setup -e
+metricbeat setup -e
 service filebeat start
 service packetbeat start
 service auditbeat start
+service metricbeat start
