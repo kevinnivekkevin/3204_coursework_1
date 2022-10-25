@@ -93,9 +93,10 @@ View/edit the lucidchart diagram [here](https://lucid.app/lucidchart/6e6578d6-0b
     3. Configure imported ELK Dashboard
 
     ```console
-    HOST-MACHINE@HOST $ vagrant docker-exec elk -- cp /vagrant/config/dashboard/project_board.ndjson /home
-
-    HOST-MACHINE@HOST $ vagrant docker-exec elk -- curl -X POST "http://127.0.0.1:5601/api/saved_objects/_import?createNewCopies=true" -H "kbn-xsrf: true" --form file=@/home/project_board.ndjson
+    HOST-MACHINE@HOST $ vagrant docker-exec elk -- cp /vagrant/config/dashboard/3204_export.ndjson /home
+    ```
+    ```
+    HOST-MACHINE@HOST $ vagrant docker-exec elk -- curl -X POST "http://127.0.0.1:5601/api/saved_objects/_import?createNewCopies=true" -H "kbn-xsrf: true" --form file=@/home/3204_export.ndjson
     ```
 
 ### WSL2
@@ -152,7 +153,7 @@ HOST-MACHINE@HOST $ vagrant halt
 - Simulated Network - `10.0.0.2`
 - User Access - [`http://127.0.0.1:5601`](http://127.0.0.1:5601)
 - Browse to [`http://127.0.0.1:5601/app/dashboards`](http://127.0.0.1:5601/app/dashboards) to view the log dashboards. (e.g [Packetbeat] Overview ECS)
-- Exported diagrams can be imported by placing them in `config/dashboard` and renaming them to `project_board.ndjson`
+- Exported data can be imported by placing them in `config/dashboard` and renaming them to `3204_export.ndjson`
 
 <p align="right">(<a href="#ict3204---coursework-assignment-1">back to top</a>)</p>
 
