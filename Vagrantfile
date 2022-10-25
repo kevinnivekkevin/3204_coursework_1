@@ -16,6 +16,7 @@ Vagrant.configure("2") do |config|
       d.ports = ["5601:5601", "9200:9200", "5044:5044", "9600:9600"]
       d.remains_running = true
     end
+    
   end
 
   # Kali container
@@ -92,14 +93,14 @@ Vagrant.configure("2") do |config|
       run: "never",
       privileged: false,
       path: "attack/2_PrivilegeEscalation/privilege_escalation.sh"
-	
-	confluence.vm.provision "processinjection",
-      after: "privesc",
-      type: "shell",
-      preserve_order: true,
-      run: "never",
-      privileged: true,
-      path: "attack/2_PrivilegeEscalation/process_injection.sh"
+    
+    confluence.vm.provision "processinjection",
+        after: "privesc",
+        type: "shell",
+        preserve_order: true,
+        run: "never",
+        privileged: true,
+        path: "attack/2_PrivilegeEscalation/process_injection.sh"
 
     confluence.vm.provision "persistence",
       after: "setup",

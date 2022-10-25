@@ -90,6 +90,43 @@ View/edit the lucidchart diagram [here](https://lucid.app/lucidchart/6e6578d6-0b
       ...            sebp/elk                        "/usr/local/bin/star…"     .. minutes ago    Up xx minutes   0.0.0.0:5044->5044/tcp, 0.0.0.0:5601->5601/tcp, 0.0.0.0:9200->9200/tcp, 0.0.0.0:9600->9600/tcp, 9300/tcp   elk
       ...            tknerr/baseimage-ubuntu:18.04   "/bin/sh -c '/usr/sb…"     .. minutes ago    Up xx minutes   127.0.0.1:2222->22/tcp                                                                                     kali
       ```
+    3. Configure imported ELK Dashboard
+
+    ```console
+    HOST-MACHINE@HOST $ vagrant docker-exec elk -- cp /vagrant/config/dashboard/project_board.ndjson /home
+
+    HOST-MACHINE@HOST $ vagrant docker-exec elk -- curl -X POST "http://127.0.0.1:5601/api/saved_objects/_import?createNewCopies=true" -H "kbn-xsrf: true" --form file=@/home/project_board.ndjson
+    ```
+
+### WSL2
+If running on WSL2, note that you need to configure your reinstall your WSL2 kernel to enable logging for the containers spun up by docker. This is because the standard WSL2 kernel comes with the options for `CONFIG_AUDIT` and `CONFIG_NETFILTER_XT_TARGET_AUDIT` disabled. The reason is roughly due to the lack of support for SElinux on WSL2, which made this an unnecessary feature. To ensure that logging functionalities on the **Confluence** machine through the `auditd` package can work, the kernel must be rebuilt with the asforementioned options enabled.  
+
+The reference guide is [here](https://blog.jp.square-enix.com/iteng-blog/posts/00004-auditd-on-wsl2-windows10/). The compiled kernel is located in the project root: `bzImage`. Just add the `bzImage` path to the `.wslconfig` located in the user home directory (`C:\Users\User\.wslconfig`) => `kernel=<path to bzImage>`. Restart WSL2 after that and run `vagrant up` to check if the configuration is successful. Note that this configuration is only tested on WSL2 `Ubuntu-20.04` image.
+
+1. Create the file `C:\Users\User\.wslconfig`
+2. Add this code (NOTE: make sure to use `\\` to escape the `\`):
+
+```
+[wsl2]
+kernel=C:\\Users\\myuser\\...\\3204_coursework_1\\bzImage
+```
+
+3. Ensure that docker is **NOT** running
+4. Open command prompt and run `wsl --shutdown`
+5. The next time you open WSL2 you should be able to see the output as follows
+
+```console
+$ uname -a
+Linux MYMACHINE 5.15.68.1-microsoft-standard-WSL2-3204+ #1 SMP Tue Oct 25 10:13:28 +08 2022 x86_64 x86_64 x86_64 GNU/Linux
+
+$ zfgrep AUDIT /proc/config.gz
+CONFIG_AUDIT=y
+CONFIG_HAVE_ARCH_AUDITSYSCALL=y
+CONFIG_AUDITSYSCALL=y
+CONFIG_AUDIT_ARCH=y
+# CONFIG_KVM_MMU_AUDIT is not set
+CONFIG_NETFILTER_XT_TARGET_AUDIT=y
+```
 
 ### Quick Commands
 ```console
@@ -115,6 +152,7 @@ HOST-MACHINE@HOST $ vagrant halt
 - Simulated Network - `10.0.0.2`
 - User Access - [`http://127.0.0.1:5601`](http://127.0.0.1:5601)
 - Browse to [`http://127.0.0.1:5601/app/dashboards`](http://127.0.0.1:5601/app/dashboards) to view the log dashboards. (e.g [Packetbeat] Overview ECS)
+- Exported diagrams can be imported by placing them in `config/dashboard` and renaming them to `project_board.ndjson`
 
 <p align="right">(<a href="#ict3204---coursework-assignment-1">back to top</a>)</p>
 
@@ -304,6 +342,7 @@ HOST-MACHINE@HOST $ vagrant provision --provision-with exfil
   - Folders will be recursively traversed to find files to encrypt.
   - All files found will be encrypted with the public key.
   - All encrypted files will have a new extension `.r4ns0m3`.
+- After the ransomware has completed running, the original home page for the **Confluence** will be replaced with a defaced home page located at `attack/impact/login.vm`
 
 #### Automation Script
 ```console
