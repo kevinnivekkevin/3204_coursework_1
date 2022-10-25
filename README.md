@@ -249,7 +249,7 @@ HOST-MACHINE@HOST $ vagrant provision --provision-with sudoerspe
 ##### Setup
 ```console
 root@confluence:/# cd /tmp
-root@confluence:/tmp# cp /vagrant/attak/persistence/binarysuid /tmp/suid.c
+root@confluence:/tmp# cp /vagrant/attack/persistence/binarysuid /tmp/suid.c
 ```
 ```console
 root@confluence:/tmp# gcc suid.c -o suid
