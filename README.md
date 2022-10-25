@@ -38,8 +38,7 @@ View/edit the lucidchart diagram [here](https://lucid.app/lucidchart/6e6578d6-0b
 
 <p align="right">(<a href="#ict3204---coursework-assignment-1">back to top</a>)</p>
 
-# Usage 
-### Table of Contents
+## Table of Contents
   - [Part 1 - Spinning Up The Infrastructure](#part-1---spinning-up-the-infrastructure)
     - [WSL2](#wsl2)
     - [Quick Commands](#quick-commands)
