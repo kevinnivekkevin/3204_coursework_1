@@ -1,4 +1,5 @@
-![icon](https://user-images.githubusercontent.com/27985157/197839626-a557ecb6-ba39-4927-b588-65aa90b8c50b.png)
+<p align="center"><img width="450" height="350" src="https://user-images.githubusercontent.com/27985157/197839626-a557ecb6-ba39-4927-b588-65aa90b8c50b.png"></p>
+
 # ICT3204 - Coursework Assignment 1
 - To plan and implement a attack simulation utilizing `ATT&CK tactics`, `techniques`
 - To integrate the usage of `Vagrant Scripts` and `Docker Containers`
