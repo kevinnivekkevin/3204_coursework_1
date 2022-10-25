@@ -41,6 +41,7 @@ View/edit the lucidchart diagram [here](https://lucid.app/lucidchart/6e6578d6-0b
 # Usage 
 ### Table of Contents
   - [Part 1 - Spinning Up The Infrastructure](#part-1---spinning-up-the-infrastructure)
+    - [WSL2](#wsl2)
     - [Quick Commands](#quick-commands)
   - [Part 2 - Logs, Dashboards and Services](#part-2---logs-dashboards-and-services)
     - [Confluence - Attack Target](#confluence---attack-target)
