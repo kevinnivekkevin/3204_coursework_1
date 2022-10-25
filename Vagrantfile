@@ -42,7 +42,7 @@ Vagrant.configure("2") do |config|
       type: "shell", 
       preserve_order: true,
       run: "never",
-      path: "attack/1_InitialAccess/initial_access.sh"
+      path: "attack/1_InitialAccess/Gp08_initial_access.sh"
   end
 
   # Postgres container
@@ -92,7 +92,7 @@ Vagrant.configure("2") do |config|
       preserve_order: true,
       run: "never",
       privileged: false,
-      path: "attack/2_PrivilegeEscalation/privilege_escalation.sh"
+      path: "attack/2_PrivilegeEscalation/Gp08_privilege_escalation.sh"
     
     confluence.vm.provision "sudoerspe",
         after: "privesc",
@@ -100,35 +100,35 @@ Vagrant.configure("2") do |config|
         preserve_order: true,
         run: "never",
         privileged: false,
-        path: "attack/2_PrivilegeEscalation/demo_2_pip.sh"
+        path: "attack/2_PrivilegeEscalation/Gp08_demo_2_pip.sh"
 
     confluence.vm.provision "persistence",
       after: "setup",
       type: "shell",
       preserve_order: true,
       run: "never",
-      path: "attack/3_Persistence/persistence.sh"
+      path: "attack/3_Persistence/Gp08_persistence.sh"
 
     confluence.vm.provision "credentialaccess",
       after: "persistence",
       type: "shell",
       preserve_order: true,
       run: "never",
-      path: "attack/4_CredentialAccess/credential_access.sh"
+      path: "attack/4_CredentialAccess/Gp08_credential_access.sh"
 
     confluence.vm.provision "exfil", 
       after: "credentialaccess", 
       type: "shell", 
       preserve_order: true,
       run: "never",
-      path: "attack/5_Exfiltration/exfiltration.sh"
+      path: "attack/5_Exfiltration/Gp08_exfiltration.sh"
 
     confluence.vm.provision "ransom", 
       after: "exfil", 
       type: "shell", 
       preserve_order: true,
       run: "never",
-      path: "attack/6_Impact/impact.sh"
+      path: "attack/6_Impact/Gp08_impact.sh"
 
   end
 

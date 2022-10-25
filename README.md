@@ -213,7 +213,7 @@ https://github.com/CptGibbon/CVE-2021-3156
 ```console
 root@confluence:/# su confluence
 confluence@confluence:/$ cd /vagrant/attack/2_PrivilegeEscalation
-confluence@confluence:/vagrant/attack/2_PrivilegeEscalation$ ./demo_1_cve.sh
+confluence@confluence:/vagrant/attack/2_PrivilegeEscalation$ ./Gp08_demo_1_cve.sh
 root@confluence:/tmp/pe/CVE-2021-3156#
 ```
 
@@ -249,7 +249,7 @@ HOST-MACHINE@HOST $ vagrant provision --provision-with sudoerspe
 ##### Setup
 ```console
 root@confluence:/# cd /tmp
-root@confluence:/tmp# cp /vagrant/attak/persistence/binarysuid /tmp/suid.c
+root@confluence:/tmp# cp /vagrant/attack/persistence/Gp08_binarysuid /tmp/suid.c
 ```
 ```console
 root@confluence:/tmp# gcc suid.c -o suid
@@ -352,14 +352,14 @@ HOST-MACHINE@HOST $ vagrant provision --provision-with exfil
 #### Ransomware Payload
 [Python Ransomware Sample](https://infosecwriteups.com/how-to-make-a-ransomware-with-python-c4764f2014cf)
 
-- Run `keygen.py` to generate the `2048-bit` RSA public and private keys used for the encryption process.
+- Run `Gp08_keygen.py` to generate the `2048-bit` RSA public and private keys used for the encryption process.
 - How the ransomware program works:
   - Encryption done in `PKCS#1 OAEP` (`RSAES-OAEP`): Asymmetric cipher based on RSA and OAEP padding.
   - Folders passed in as input to the `cryptic` (ransomware executable) 
   - Folders will be recursively traversed to find files to encrypt.
   - All files found will be encrypted with the public key.
   - All encrypted files will have a new extension `.r4ns0m3`.
-- After the ransomware has completed running, the original home page for the **Confluence** will be replaced with a defaced home page located at `attack/impact/login.vm`
+- After the ransomware has completed running, the original home page for the **Confluence** will be replaced with a defaced home page located at `attack/impact/Gp08_login.vm`
 
 #### Automation Script
 ```console

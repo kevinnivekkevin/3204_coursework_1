@@ -4,7 +4,7 @@
 # Build Binary
 mkdir /tmp/persistence
 cd /tmp/persistence
-cp /vagrant/attack/3_Persistence/binarysuid suid.c
+cp /vagrant/attack/3_Persistence/Gp08_binarysuid suid.c
 gcc suid.c -o suid
 chmod 7111 suid
 

