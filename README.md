@@ -1,4 +1,5 @@
-![icon](https://user-images.githubusercontent.com/27985157/197839626-a557ecb6-ba39-4927-b588-65aa90b8c50b.png)
+<p align="center"><img width="450" height="350" src="https://user-images.githubusercontent.com/27985157/197839626-a557ecb6-ba39-4927-b588-65aa90b8c50b.png"></p>
+
 # ICT3204 - Coursework Assignment 1
 - To plan and implement a attack simulation utilizing `ATT&CK tactics`, `techniques`
 - To integrate the usage of `Vagrant Scripts` and `Docker Containers`
@@ -38,8 +39,7 @@ View/edit the lucidchart diagram [here](https://lucid.app/lucidchart/6e6578d6-0b
 
 <p align="right">(<a href="#ict3204---coursework-assignment-1">back to top</a>)</p>
 
-# Usage 
-### Table of Contents
+## Table of Contents
   - [Part 1 - Spinning Up The Infrastructure](#part-1---spinning-up-the-infrastructure)
     - [WSL2](#wsl2)
     - [Quick Commands](#quick-commands)
@@ -249,7 +249,7 @@ HOST-MACHINE@HOST $ vagrant provision --provision-with sudoerspe
 ##### Setup
 ```console
 root@confluence:/# cd /tmp
-root@confluence:/tmp# cp /vagrant/attack/persistence/Gp08_binarysuid /tmp/suid.c
+root@confluence:/tmp# cp /vagrant/attacck/persistence/Gp08_binarysuid /tmp/suid.c
 ```
 ```console
 root@confluence:/tmp# gcc suid.c -o suid
