@@ -12,7 +12,6 @@ apt-get install --no-install-recommends \
                 libpcap0.8 \
                 git \
                 make \
-                g++ \
                 python3-distutils \
                 python3-setuptools \
                 python3-venv \
