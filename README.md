@@ -65,9 +65,9 @@ kernelCommandLine = "sysctl.vm.max_map_count=262144"
     - [Impact](#impact)
       - [Ransomware Payload](#ransomware-payload)
   - [Documentation](#documentation)
-    - [YouTube](youtube)
-    - [Poster](poster)
-    - [Kibana Dashboard](kibana-dashboard)
+    - [YouTube](#youtube)
+    - [Poster](#poster)
+    - [Kibana Dashboard](#kibana-dashboard)
 
 
 ## Part 1 - Spinning Up The Infrastructure
@@ -370,6 +370,7 @@ HOST-MACHINE@HOST $ vagrant provision --provision-with ransom
 
 ## Documentation
 ### YouTube
+[![youtube](https://user-images.githubusercontent.com/27985157/198199271-d2c870cf-fe58-42b5-a5e3-bf90b42be720.png)](https://youtu.be/oe0heljXzAU)
 
 ### Poster
 ![poster](https://user-images.githubusercontent.com/27985157/197874389-420581e4-4acb-45b5-a4ee-55999d75a117.png)
